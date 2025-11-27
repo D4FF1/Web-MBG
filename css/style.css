@@ -809,6 +809,58 @@ section {
     box-shadow: 0 10px 25px rgba(255, 107, 53, 0.6);
 }
 
+ /* CSS tambahan untuk gambar menu */
+        .menu-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+            padding: 15px;
+            background-color: #f9f9f9;
+            border-radius: 10px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        
+        .menu-item-image {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            overflow: hidden;
+            margin-right: 15px;
+            flex-shrink: 0;
+        }
+        
+        .menu-item-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .menu-item-content {
+            flex: 1;
+        }
+        
+        .menu-item h4 {
+            margin: 0 0 5px 0;
+            color: #2c5530;
+        }
+        
+        .menu-item p {
+            margin: 0;
+            color: #555;
+        }
+        
+        @media (max-width: 768px) {
+            .menu-item {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .menu-item-image {
+                margin-right: 0;
+                margin-bottom: 10px;
+            }
+        }
+        
 /* Enhanced Donation Section */
 .donation {
     background-color: white;
