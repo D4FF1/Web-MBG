@@ -6,13 +6,13 @@
     <meta name="description" content="Program Makan Bergizi Gratis (MBG) - Memberikan akses makanan bergizi bagi anak-anak Indonesia untuk mendukung tumbuh kembang optimal">
     <meta name="keywords" content="makan bergizi, anak Indonesia, nutrisi, donasi, sukarelawan">
     <title>Program Makan Bergizi Gratis (MBG) - Nutrisi untuk Anak Indonesia</title>
-    <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-    Preloader
+    <!-- Preloader -->
     <div class="preloader">
         <div class="preloader-content">
             <div class="logo-loader">
@@ -39,7 +39,8 @@
                 <ul class="nav-links">
                     <li><a href="#home" class="nav-link active"><i class="fas fa-home"></i> Beranda</a></li>
                     <li><a href="#about" class="nav-link"><i class="fas fa-info-circle"></i> Tentang</a></li>
-                    <li><a href="#locations-menu" class="nav-link"><i class="fas fa-map-marker-alt"></i> Lokasi</a></li>
+                    <li><a href="#locations" class="nav-link"><i class="fas fa-map-marker-alt"></i> Lokasi</a></li>
+                    <li><a href="#menu" class="nav-link"><i class="fas fa-utensils"></i> Menu</a></li>
                     <li><a href="#impact" class="nav-link"><i class="fas fa-chart-line"></i> Dampak</a></li>
                     <li><a href="#donation" class="nav-link"><i class="fas fa-hand-holding-heart"></i> Donasi</a></li>
                     <li><a href="#contact" class="nav-link"><i class="fas fa-envelope"></i> Kontak</a></li>
@@ -88,7 +89,7 @@
                     <a href="#donation" class="btn-hero btn-hero-primary">
                         <i class="fas fa-heart"></i> Dukung Sekarang
                     </a>
-                    <a href="#about" class="btn-hero btn-hero-secondary">
+                    <a href="https://youtu.be/example-video" class="btn-hero btn-hero-secondary" target="_blank">
                         <i class="fas fa-play-circle"></i> Lihat Video
                     </a>
                 </div>
@@ -208,7 +209,7 @@
                         <div class="gallery-item main-image">
                             <img src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" alt="Anak-anak MBG">
                         </div>
-                        <div class="gallery-item side-image">
+                        <div class="gallery-item">
                             <img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Edukasi gizi">
                         </div>
                     </div>
@@ -218,7 +219,7 @@
     </section>
 
     <!-- Locations Section -->
-    <section class="locations" id="locations-menu">
+    <section class="locations" id="locations">
         <div class="container">
             <div class="section-header">
                 <span class="section-label">Lokasi MBG</span>
@@ -231,24 +232,62 @@
             <!-- Map Section -->
             <div class="map-container">
                 <div class="map-visual">
+                    <!-- Simplified Indonesia Map with Points -->
                     <div class="map-overlay">
-                        <div class="map-point jakarta active" data-location="jakarta">
+                        <div class="map-point jakarta active" data-location="jakarta" data-tooltip="Jakarta - 5 lokasi aktif">
                             <div class="point-pulse"></div>
                             <div class="point-label">Jakarta</div>
                         </div>
-                        <div class="map-point bandung" data-location="bandung">
+                        <div class="map-point bandung" data-location="bandung" data-tooltip="Bandung - 3 lokasi aktif">
                             <div class="point-pulse"></div>
                             <div class="point-label">Bandung</div>
                         </div>
-                        <div class="map-point surabaya" data-location="surabaya">
+                        <div class="map-point surabaya" data-location="surabaya" data-tooltip="Surabaya - 4 lokasi aktif">
                             <div class="point-pulse"></div>
                             <div class="point-label">Surabaya</div>
                         </div>
-                        <div class="map-point yogyakarta" data-location="yogyakarta">
+                        <div class="map-point yogyakarta" data-location="yogyakarta" data-tooltip="Yogyakarta - 2 lokasi aktif">
                             <div class="point-pulse"></div>
                             <div class="point-label">Yogyakarta</div>
                         </div>
+                        <div class="map-point medan" data-location="medan" data-tooltip="Medan - 3 lokasi aktif">
+                            <div class="point-pulse"></div>
+                            <div class="point-label">Medan</div>
+                        </div>
+                        <div class="map-point makassar" data-location="makassar" data-tooltip="Makassar - 2 lokasi aktif">
+                            <div class="point-pulse"></div>
+                            <div class="point-label">Makassar</div>
+                        </div>
                     </div>
+                </div>
+            </div>
+
+            <!-- Location Search -->
+            <div class="location-search">
+                <div class="search-box">
+                    <div class="input-group">
+                        <i class="fas fa-search"></i>
+                        <input type="text" id="locationSearch" placeholder="Cari lokasi berdasarkan kota atau kecamatan...">
+                    </div>
+                    <button class="btn-primary search-btn">
+                        <i class="fas fa-map-marker-alt"></i> Cari
+                    </button>
+                </div>
+                <div class="search-filters">
+                    <select id="provinceFilter">
+                        <option value="">Semua Provinsi</option>
+                        <option value="jakarta">DKI Jakarta</option>
+                        <option value="jabar">Jawa Barat</option>
+                        <option value="jatim">Jawa Timur</option>
+                        <option value="yogyakarta">DI Yogyakarta</option>
+                        <option value="sumut">Sumatera Utara</option>
+                        <option value="sulsel">Sulawesi Selatan</option>
+                    </select>
+                    <select id="statusFilter">
+                        <option value="">Semua Status</option>
+                        <option value="active">Aktif</option>
+                        <option value="coming">Akan Datang</option>
+                    </select>
                 </div>
             </div>
 
@@ -260,7 +299,7 @@
                             <i class="fas fa-school"></i>
                         </div>
                         <div class="location-title">
-                            <h3>Jakarta Pusat</h3>
+                            <h3>SDN 01 Menteng - Jakarta Pusat</h3>
                             <span class="location-status active">Aktif</span>
                         </div>
                         <div class="location-distance">
@@ -274,13 +313,13 @@
                                 <i class="fas fa-map-marker-alt"></i>
                                 <div>
                                     <h4>Alamat</h4>
-                                    <p>SDN 01 Menteng, Jl. Besuki No. 5, Jakarta Pusat</p>
+                                    <p>Jl. Besuki No. 5, Menteng, Jakarta Pusat, DKI Jakarta 10310</p>
                                 </div>
                             </div>
                             <div class="info-item">
                                 <i class="fas fa-clock"></i>
                                 <div>
-                                    <h4>Jadwal</h4>
+                                    <h4>Jadwal Distribusi</h4>
                                     <p>Senin - Jumat, 12:00 - 13:00 WIB</p>
                                 </div>
                             </div>
@@ -291,12 +330,25 @@
                                     <p>150 anak per hari</p>
                                 </div>
                             </div>
+                            <div class="info-item">
+                                <i class="fas fa-user-check"></i>
+                                <div>
+                                    <h4>Koordinator</h4>
+                                    <p>Budi Santoso (0812-3456-7890)</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="location-features">
+                            <span class="feature-tag"><i class="fas fa-wifi"></i> Free WiFi</span>
+                            <span class="feature-tag"><i class="fas fa-parking"></i> Parkir</span>
+                            <span class="feature-tag"><i class="fas fa-wheelchair"></i> Aksesibel</span>
+                            <span class="feature-tag"><i class="fas fa-restroom"></i> Toilet</span>
                         </div>
                         <div class="location-actions">
-                            <a href="#" class="btn-location">
+                            <a href="https://maps.google.com/?q=SDN+01+Menteng+Jakarta+Pusat" target="_blank" class="btn-location btn-location-primary">
                                 <i class="fas fa-directions"></i> Petunjuk Arah
                             </a>
-                            <a href="#" class="btn-location btn-location-secondary">
+                            <a href="tel:+6281256742490" class="btn-location btn-location-secondary">
                                 <i class="fas fa-phone"></i> Hubungi
                             </a>
                         </div>
@@ -309,7 +361,7 @@
                             <i class="fas fa-school"></i>
                         </div>
                         <div class="location-title">
-                            <h3>Bandung</h3>
+                            <h3>SDN 123 Cijerah - Bandung</h3>
                             <span class="location-status active">Aktif</span>
                         </div>
                         <div class="location-distance">
@@ -323,13 +375,13 @@
                                 <i class="fas fa-map-marker-alt"></i>
                                 <div>
                                     <h4>Alamat</h4>
-                                    <p>SDN 123 Cijerah, Jl. Cijerah Indah No. 45, Bandung</p>
+                                    <p>Jl. Cijerah Indah No. 45, Bandung Kulon, Bandung, Jawa Barat 40213</p>
                                 </div>
                             </div>
                             <div class="info-item">
                                 <i class="fas fa-clock"></i>
                                 <div>
-                                    <h4>Jadwal</h4>
+                                    <h4>Jadwal Distribusi</h4>
                                     <p>Senin, Rabu, Jumat, 11:30 - 12:30 WIB</p>
                                 </div>
                             </div>
@@ -340,12 +392,24 @@
                                     <p>200 anak per hari</p>
                                 </div>
                             </div>
+                            <div class="info-item">
+                                <i class="fas fa-user-check"></i>
+                                <div>
+                                    <h4>Koordinator</h4>
+                                    <p>Siti Rahayu (0813-4567-8901)</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="location-features">
+                            <span class="feature-tag"><i class="fas fa-parking"></i> Parkir</span>
+                            <span class="feature-tag"><i class="fas fa-restroom"></i> Toilet</span>
+                            <span class="feature-tag"><i class="fas fa-first-aid"></i> P3K</span>
                         </div>
                         <div class="location-actions">
-                            <a href="#" class="btn-location">
+                            <a href="https://maps.google.com/?q=SDN+123+Cijerah+Bandung" target="_blank" class="btn-location btn-location-primary">
                                 <i class="fas fa-directions"></i> Petunjuk Arah
                             </a>
-                            <a href="#" class="btn-location btn-location-secondary">
+                            <a href="tel:+6281256742490" class="btn-location btn-location-secondary">
                                 <i class="fas fa-phone"></i> Hubungi
                             </a>
                         </div>
@@ -358,7 +422,7 @@
                             <i class="fas fa-school"></i>
                         </div>
                         <div class="location-title">
-                            <h3>Surabaya</h3>
+                            <h3>SDN Kalisari II - Surabaya</h3>
                             <span class="location-status active">Aktif</span>
                         </div>
                         <div class="location-distance">
@@ -372,13 +436,13 @@
                                 <i class="fas fa-map-marker-alt"></i>
                                 <div>
                                     <h4>Alamat</h4>
-                                    <p>SDN Kalisari II, Jl. Raya Kalisari No. 88, Surabaya</p>
+                                    <p>Jl. Raya Kalisari No. 88, Mulyorejo, Surabaya, Jawa Timur 60112</p>
                                 </div>
                             </div>
                             <div class="info-item">
                                 <i class="fas fa-clock"></i>
                                 <div>
-                                    <h4>Jadwal</h4>
+                                    <h4>Jadwal Distribusi</h4>
                                     <p>Selasa - Kamis, 12:00 - 13:00 WIB</p>
                                 </div>
                             </div>
@@ -389,12 +453,26 @@
                                     <p>180 anak per hari</p>
                                 </div>
                             </div>
+                            <div class="info-item">
+                                <i class="fas fa-user-check"></i>
+                                <div>
+                                    <h4>Koordinator</h4>
+                                    <p>Agus Setiawan (0814-5678-9012)</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="location-features">
+                            <span class="feature-tag"><i class="fas fa-wifi"></i> Free WiFi</span>
+                            <span class="feature-tag"><i class="fas fa-parking"></i> Parkir</span>
+                            <span class="feature-tag"><i class="fas fa-wheelchair"></i> Aksesibel</span>
+                            <span class="feature-tag"><i class="fas fa-restroom"></i> Toilet</span>
+                            <span class="feature-tag"><i class="fas fa-first-aid"></i> P3K</span>
                         </div>
                         <div class="location-actions">
-                            <a href="#" class="btn-location">
+                            <a href="https://maps.google.com/?q=SDN+Kalisari+II+Surabaya" target="_blank" class="btn-location btn-location-primary">
                                 <i class="fas fa-directions"></i> Petunjuk Arah
                             </a>
-                            <a href="#" class="btn-location btn-location-secondary">
+                            <a href="tel:+6281256742490" class="btn-location btn-location-secondary">
                                 <i class="fas fa-phone"></i> Hubungi
                             </a>
                         </div>
@@ -405,7 +483,7 @@
     </section>
 
     <!-- Menu Section -->
-    <section class="menu-section">
+    <section class="menu-section" id="menu">
         <div class="container">
             <div class="section-header">
                 <span class="section-label">Menu Bergizi</span>
@@ -418,15 +496,26 @@
             <div class="menu-tabs">
                 <div class="tabs-header">
                     <div class="tabs">
-                        <button class="tab active" data-day="senin">Senin</button>
-                        <button class="tab" data-day="selasa">Selasa</button>
-                        <button class="tab" data-day="rabu">Rabu</button>
-                        <button class="tab" data-day="kamis">Kamis</button>
-                        <button class="tab" data-day="jumat">Jumat</button>
+                        <button class="tab active" data-day="senin">
+                            <i class="fas fa-calendar-day day-color"></i> Senin
+                        </button>
+                        <button class="tab" data-day="selasa">
+                            <i class="fas fa-calendar-day day-color"></i> Selasa
+                        </button>
+                        <button class="tab" data-day="rabu">
+                            <i class="fas fa-calendar-day day-color"></i> Rabu
+                        </button>
+                        <button class="tab" data-day="kamis">
+                            <i class="fas fa-calendar-day day-color"></i> Kamis
+                        </button>
+                        <button class="tab" data-day="jumat">
+                            <i class="fas fa-calendar-day day-color"></i> Jumat
+                        </button>
                     </div>
                 </div>
 
                 <div class="tabs-content">
+                    <!-- Senin Menu -->
                     <div class="tab-content active" id="senin-menu">
                         <div class="menu-detail">
                             <div class="menu-image">
@@ -478,11 +567,253 @@
                                     <li><i class="fas fa-check-circle"></i> Sayur Bayam</li>
                                     <li><i class="fas fa-check-circle"></i> Pisang & Susu</li>
                                 </ul>
+                                <div class="menu-note">
+                                    <h4><i class="fas fa-info-circle"></i> Catatan Gizi</h4>
+                                    <p>Menu ini mengandung tinggi protein untuk pertumbuhan dan kalsium untuk tulang yang kuat.</p>
+                                </div>
                             </div>
                         </div>
                     </div>
                     
-                    <!-- Other days content would go here -->
+                    <!-- Selasa Menu -->
+                    <div class="tab-content" id="selasa-menu">
+                        <div class="menu-detail">
+                            <div class="menu-image">
+                                <img src="https://images.unsplash.com/photo-1565958011703-44f9829ba187?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" alt="Nasi Goreng Sehat">
+                                <div class="menu-badge">
+                                    <i class="fas fa-fire"></i>
+                                    420 Kalori
+                                </div>
+                            </div>
+                            <div class="menu-info">
+                                <h3>Nasi Goreng Sehat</h3>
+                                <p class="menu-description">
+                                    Nasi goreng dengan sayuran segar dan protein berkualitas tinggi, 
+                                    dimasak dengan minyak sehat untuk kebutuhan energi harian.
+                                </p>
+                                <div class="nutrition-grid">
+                                    <div class="nutrition-item">
+                                        <div class="nutrition-icon">
+                                            <i class="fas fa-drumstick-bite"></i>
+                                        </div>
+                                        <div>
+                                            <h4>Protein</h4>
+                                            <p>22g (Tinggi)</p>
+                                        </div>
+                                    </div>
+                                    <div class="nutrition-item">
+                                        <div class="nutrition-icon">
+                                            <i class="fas fa-carrot"></i>
+                                        </div>
+                                        <div>
+                                            <h4>Vitamin</h4>
+                                            <p>Vitamin B, K</p>
+                                        </div>
+                                    </div>
+                                    <div class="nutrition-item">
+                                        <div class="nutrition-icon">
+                                            <i class="fas fa-seedling"></i>
+                                        </div>
+                                        <div>
+                                            <h4>Serat</h4>
+                                            <p>6g (Cukup)</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <ul class="menu-items">
+                                    <li><i class="fas fa-check-circle"></i> Nasi Goreng Sayuran</li>
+                                    <li><i class="fas fa-check-circle"></i> Ayam Suwir</li>
+                                    <li><i class="fas fa-check-circle"></i> Telur Mata Sapi</li>
+                                    <li><i class="fas fa-check-circle"></i> Kerupuk Ikan</li>
+                                    <li><i class="fas fa-check-circle"></i> Jeruk & Yoghurt</li>
+                                </ul>
+                                <div class="menu-note">
+                                    <h4><i class="fas fa-info-circle"></i> Catatan Gizi</h4>
+                                    <p>Mengandung karbohidrat kompleks untuk energi berkelanjutan dan probiotik untuk pencernaan sehat.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Rabu Menu -->
+                    <div class="tab-content" id="rabu-menu">
+                        <div class="menu-detail">
+                            <div class="menu-image">
+                                <img src="https://images.unsplash.com/photo-1546069901-d5bfd2cbfb1f?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" alt="Sayur Asem Komplit">
+                                <div class="menu-badge">
+                                    <i class="fas fa-fire"></i>
+                                    380 Kalori
+                                </div>
+                            </div>
+                            <div class="menu-info">
+                                <h3>Sayur Asem Komplit</h3>
+                                <p class="menu-description">
+                                    Masakan tradisional Indonesia dengan berbagai sayuran segar dan protein nabati, 
+                                    kaya akan antioksidan dan mineral.
+                                </p>
+                                <div class="nutrition-grid">
+                                    <div class="nutrition-item">
+                                        <div class="nutrition-icon">
+                                            <i class="fas fa-drumstick-bite"></i>
+                                        </div>
+                                        <div>
+                                            <h4>Protein</h4>
+                                            <p>18g (Sedang)</p>
+                                        </div>
+                                    </div>
+                                    <div class="nutrition-item">
+                                        <div class="nutrition-icon">
+                                            <i class="fas fa-carrot"></i>
+                                        </div>
+                                        <div>
+                                            <h4>Vitamin</h4>
+                                            <p>Vitamin C, K, Folat</p>
+                                        </div>
+                                    </div>
+                                    <div class="nutrition-item">
+                                        <div class="nutrition-icon">
+                                            <i class="fas fa-seedling"></i>
+                                        </div>
+                                        <div>
+                                            <h4>Serat</h4>
+                                            <p>10g (Tinggi)</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <ul class="menu-items">
+                                    <li><i class="fas fa-check-circle"></i> Nasi Putih</li>
+                                    <li><i class="fas fa-check-circle"></i> Sayur Asem Segar</li>
+                                    <li><i class="fas fa-check-circle"></i> Tempe Goreng</li>
+                                    <li><i class="fas fa-check-circle"></i> Sambal Tomat</li>
+                                    <li><i class="fas fa-check-circle"></i> Pepaya & Susu</li>
+                                </ul>
+                                <div class="menu-note">
+                                    <h4><i class="fas fa-info-circle"></i> Catatan Gizi</h4>
+                                    <p>Kaya serat untuk pencernaan dan antioksidan untuk sistem imun yang kuat.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Kamis Menu -->
+                    <div class="tab-content" id="kamis-menu">
+                        <div class="menu-detail">
+                            <div class="menu-image">
+                                <img src="https://images.unsplash.com/photo-1563379091339-03246963d9d6?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" alt="Soto Ayam">
+                                <div class="menu-badge">
+                                    <i class="fas fa-fire"></i>
+                                    400 Kalori
+                                </div>
+                            </div>
+                            <div class="menu-info">
+                                <h3>Soto Ayam Bergizi</h3>
+                                <p class="menu-description">
+                                    Soto ayam dengan kuah kaldu tulang yang kaya kolagen, dilengkapi 
+                                    dengan berbagai sayuran dan protein untuk kesehatan optimal.
+                                </p>
+                                <div class="nutrition-grid">
+                                    <div class="nutrition-item">
+                                        <div class="nutrition-icon">
+                                            <i class="fas fa-drumstick-bite"></i>
+                                        </div>
+                                        <div>
+                                            <h4>Protein</h4>
+                                            <p>20g (Sedang)</p>
+                                        </div>
+                                    </div>
+                                    <div class="nutrition-item">
+                                        <div class="nutrition-icon">
+                                            <i class="fas fa-carrot"></i>
+                                        </div>
+                                        <div>
+                                            <h4>Mineral</h4>
+                                            <p>Kalsium, Zat Besi</p>
+                                        </div>
+                                    </div>
+                                    <div class="nutrition-item">
+                                        <div class="nutrition-icon">
+                                            <i class="fas fa-seedling"></i>
+                                        </div>
+                                        <div>
+                                            <h4>Serat</h4>
+                                            <p>5g (Cukup)</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <ul class="menu-items">
+                                    <li><i class="fas fa-check-circle"></i> Soto Ayam Kuah</li>
+                                    <li><i class="fas fa-check-circle"></i> Ayam Suwir</li>
+                                    <li><i class="fas fa-check-circle"></i> Tauge & Kol</li>
+                                    <li><i class="fas fa-check-circle"></i> Telur Rebus</li>
+                                    <li><i class="fas fa-check-circle"></i> Apel & Susu</li>
+                                </ul>
+                                <div class="menu-note">
+                                    <h4><i class="fas fa-info-circle"></i> Catatan Gizi</h4>
+                                    <p>Kaldu tulang kaya kolagen untuk pertumbuhan tulang dan sendi yang sehat.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Jumat Menu -->
+                    <div class="tab-content" id="jumat-menu">
+                        <div class="menu-detail">
+                            <div class="menu-image">
+                                <img src="https://images.unsplash.com/photo-1513104890138-7c749659a591?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" alt="Mie Goreng Sehat">
+                                <div class="menu-badge">
+                                    <i class="fas fa-fire"></i>
+                                    410 Kalori
+                                </div>
+                            </div>
+                            <div class="menu-info">
+                                <h3>Mie Goreng Sehat</h3>
+                                <p class="menu-description">
+                                    Mie goreng dengan tambahan sayuran dan protein, menggunakan mie 
+                                    telur berkualitas tinggi dan bumbu rendah sodium.
+                                </p>
+                                <div class="nutrition-grid">
+                                    <div class="nutrition-item">
+                                        <div class="nutrition-icon">
+                                            <i class="fas fa-drumstick-bite"></i>
+                                        </div>
+                                        <div>
+                                            <h4>Protein</h4>
+                                            <p>19g (Sedang)</p>
+                                        </div>
+                                    </div>
+                                    <div class="nutrition-item">
+                                        <div class="nutrition-icon">
+                                            <i class="fas fa-carrot"></i>
+                                        </div>
+                                        <div>
+                                            <h4>Vitamin</h4>
+                                            <p>Vitamin A, B12</p>
+                                        </div>
+                                    </div>
+                                    <div class="nutrition-item">
+                                        <div class="nutrition-icon">
+                                            <i class="fas fa-seedling"></i>
+                                        </div>
+                                        <div>
+                                            <h4>Serat</h4>
+                                            <p>7g (Cukup)</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <ul class="menu-items">
+                                    <li><i class="fas fa-check-circle"></i> Mie Goreng Sayuran</li>
+                                    <li><i class="fas fa-check-circle"></i> Udang & Ayam</li>
+                                    <li><i class="fas fa-check-circle"></i> Telur</li>
+                                    <li><i class="fas fa-check-circle"></i> Acar Segar</li>
+                                    <li><i class="fas fa-check-circle"></i> Pisang & Susu</li>
+                                </ul>
+                                <div class="menu-note">
+                                    <h4><i class="fas fa-info-circle"></i> Catatan Gizi</h4>
+                                    <p>Mengandung omega-3 dari udang untuk perkembangan otak dan penglihatan.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -560,8 +891,8 @@
                                 <i class="fas fa-utensils"></i>
                             </div>
                             <div class="impact-info">
-                                <h3>Rp 15.000</h3>
-                                <p>1 Paket Makan Bergizi untuk 1 Anak</p>
+                                <h3>Rp 150.000</h3>
+                                <p>10 Paket Makan Bergizi untuk 10 Anak</p>
                             </div>
                         </div>
                         <div class="impact-card">
@@ -714,8 +1045,11 @@
                             <i class="fas fa-map-marker-alt"></i>
                         </div>
                         <div class="contact-details">
-                            <h3>Kantor Pusat</h3>
+                            <h3><i class="fas fa-building"></i> Kantor Pusat MBG</h3>
                             <p>CW7J+83H, Karang Tengah, Kec. Babakan Madang, Kabupaten Bogor, Jawa Barat 16810</p>
+                            <a href="https://maps.google.com/?q=Karang+Tengah+Babakan+Madang+Bogor" target="_blank" class="contact-action">
+                                Lihat di Google Maps <i class="fas fa-external-link-alt"></i>
+                            </a>
                         </div>
                     </div>
 
@@ -724,9 +1058,13 @@
                             <i class="fas fa-phone"></i>
                         </div>
                         <div class="contact-details">
-                            <h3>Telepon</h3>
-                            <p>(+62) 856-5742-4907</p>
+                            <h3><i class="fas fa-headset"></i> Layanan Telepon</h3>
+                            <p><strong>Hotline Donasi:</strong> (+62) 856-5742-4907</p>
+                            <p><strong>Informasi Program:</strong> (+62) 21-1234-5678</p>
                             <small>Senin-Jumat, 08:00-17:00 WIB</small>
+                            <a href="tel:+6285657424907" class="contact-action">
+                                Hubungi Sekarang <i class="fas fa-phone"></i>
+                            </a>
                         </div>
                     </div>
 
@@ -735,28 +1073,39 @@
                             <i class="fas fa-envelope"></i>
                         </div>
                         <div class="contact-details">
-                            <h3>Email</h3>
-                            <p>info@mbg-indonesia.org</p>
-                            <p>donasi@mbg-indonesia.org</p>
+                            <h3><i class="fas fa-inbox"></i> Email & Support</h3>
+                            <p><strong>Informasi Umum:</strong> info@mbg-indonesia.org</p>
+                            <p><strong>Donasi & Partnership:</strong> donasi@mbg-indonesia.org</p>
+                            <p><strong>Volunteer Program:</strong> volunteer@mbg-indonesia.org</p>
+                            <a href="mailto:info@mbg-indonesia.org" class="contact-action">
+                                Kirim Email <i class="fas fa-paper-plane"></i>
+                            </a>
                         </div>
                     </div>
 
+                    <div class="office-hours">
+                        <h4><i class="fas fa-clock"></i> Jam Operasional Kantor</h4>
+                        <p>Senin - Jumat: 08:00 - 17:00 WIB</p>
+                        <p>Sabtu: 09:00 - 14:00 WIB</p>
+                        <p>Minggu & Hari Libur: Tutup</p>
+                    </div>
+
                     <div class="social-media">
-                        <h3>Ikuti Kami</h3>
+                        <h3><i class="fas fa-share-alt"></i> Ikuti & Bagikan</h3>
                         <div class="social-icons">
-                            <a href="#" class="social-icon">
+                            <a href="#" class="social-icon facebook">
                                 <i class="fab fa-facebook-f"></i>
                             </a>
-                            <a href="#" class="social-icon">
+                            <a href="#" class="social-icon twitter">
                                 <i class="fab fa-twitter"></i>
                             </a>
-                            <a href="https://www.instagram.com/dapooyy01/" class="social-icon">
+                            <a href="https://www.instagram.com/dapooyy01/" class="social-icon instagram" target="_blank">
                                 <i class="fab fa-instagram"></i>
                             </a>
-                            <a href="https://www.youtube.com/@daffinafeeza5165" class="social-icon">
+                            <a href="https://www.youtube.com/@daffinafeeza5165" class="social-icon youtube" target="_blank">
                                 <i class="fab fa-youtube"></i>
                             </a>
-                            <a href="#" class="social-icon">
+                            <a href="https://wa.me/6285657424907" class="social-icon whatsapp" target="_blank">
                                 <i class="fab fa-whatsapp"></i>
                             </a>
                         </div>
@@ -765,7 +1114,7 @@
 
                 <div class="contact-form">
                     <div class="form-card">
-                        <h3><i class="fas fa-paper-plane"></i> Kirim Pesan</h3>
+                        <h3><i class="fas fa-paper-plane"></i> Kirim Pesan Langsung</h3>
                         <form id="contactForm">
                             <div class="form-row">
                                 <div class="form-group">
@@ -779,6 +1128,11 @@
                             </div>
 
                             <div class="form-group">
+                                <label for="contactPhone">Nomor Telepon</label>
+                                <input type="tel" id="contactPhone" placeholder="0812-3456-7890" required>
+                            </div>
+
+                            <div class="form-group">
                                 <label for="contactSubject">Subjek</label>
                                 <select id="contactSubject" required>
                                     <option value="">Pilih subjek</option>
@@ -786,13 +1140,21 @@
                                     <option value="sukarelawan">Menjadi Sukarelawan</option>
                                     <option value="kerjasama">Kerjasama / Partnership</option>
                                     <option value="informasi">Informasi Program</option>
+                                    <option value="sponsorship">Sponsorship Program</option>
                                     <option value="lainnya">Lainnya</option>
                                 </select>
                             </div>
 
                             <div class="form-group">
                                 <label for="contactMessage">Pesan</label>
-                                <textarea id="contactMessage" rows="5" placeholder="Tulis pesan Anda di sini..." required></textarea>
+                                <textarea id="contactMessage" rows="6" placeholder="Tulis pesan Anda di sini. Jelaskan kebutuhan atau pertanyaan Anda secara detail..." required></textarea>
+                            </div>
+
+                            <div class="form-group">
+                                <div class="newsletter-subscription">
+                                    <input type="checkbox" id="subscribeNewsletter">
+                                    <label for="subscribeNewsletter">Saya ingin berlangganan newsletter MBG untuk update program</label>
+                                </div>
                             </div>
 
                             <button type="submit" class="btn-submit">
@@ -827,41 +1189,41 @@
                     </div>
                     <p class="footer-description">
                         Membangun generasi Indonesia yang sehat dan cerdas melalui program 
-                        makanan bergizi yang berkelanjutan.
+                        makanan bergizi yang berkelanjutan sejak tahun 2020.
                     </p>
                     <div class="footer-social">
                         <a href="#" class="social-link"><i class="fab fa-facebook-f"></i></a>
                         <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
-                        <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
-                        <a href="#" class="social-link"><i class="fab fa-youtube"></i></a>
+                        <a href="https://www.instagram.com/dapooyy01/" class="social-link" target="_blank"><i class="fab fa-instagram"></i></a>
+                        <a href="https://www.youtube.com/@daffinafeeza5165" class="social-link" target="_blank"><i class="fab fa-youtube"></i></a>
                     </div>
                 </div>
 
                 <div class="footer-links">
                     <h3>Tautan Cepat</h3>
                     <ul>
-                        <li><a href="#home">Beranda</a></li>
-                        <li><a href="#about">Tentang MBG</a></li>
-                        <li><a href="#locations-menu">Lokasi MBG</a></li>
-                        <li><a href="#impact">Dampak Program</a></li>
-                        <li><a href="#donation">Donasi</a></li>
+                        <li><a href="#home"><i class="fas fa-chevron-right"></i> Beranda</a></li>
+                        <li><a href="#about"><i class="fas fa-chevron-right"></i> Tentang MBG</a></li>
+                        <li><a href="#locations"><i class="fas fa-chevron-right"></i> Lokasi MBG</a></li>
+                        <li><a href="#menu"><i class="fas fa-chevron-right"></i> Menu Bergizi</a></li>
+                        <li><a href="#donation"><i class="fas fa-chevron-right"></i> Donasi</a></li>
                     </ul>
                 </div>
 
                 <div class="footer-links">
-                    <h3>Program</h3>
+                    <h3>Program & Layanan</h3>
                     <ul>
-                        <li><a href="#">Makan Bergizi Gratis</a></li>
-                        <li><a href="#">Edukasi Gizi</a></li>
-                        <li><a href="#">Kelas Memasak</a></li>
-                        <li><a href="#">Pemeriksaan Kesehatan</a></li>
-                        <li><a href="#">Kebun Sekolah</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> Makan Bergizi Gratis</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> Edukasi Gizi</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> Program Volunteer</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> Pemeriksaan Kesehatan</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> Kampanye Sosial</a></li>
                     </ul>
                 </div>
 
                 <div class="footer-newsletter">
-                    <h3>Berlangganan Newsletter</h3>
-                    <p>Dapatkan update terbaru tentang program MBG</p>
+                    <h3>Update MBG</h3>
+                    <p>Dapatkan informasi terbaru tentang program dan kegiatan MBG langsung ke email Anda.</p>
                     <form class="newsletter-form">
                         <div class="input-group">
                             <input type="email" placeholder="Email Anda" required>
@@ -869,6 +1231,7 @@
                                 <i class="fas fa-paper-plane"></i>
                             </button>
                         </div>
+                        <small>Kami tidak akan mengirim spam. Bisa unsubscribe kapan saja.</small>
                     </form>
                 </div>
             </div>
@@ -881,6 +1244,7 @@
                     <a href="#">Kebijakan Privasi</a>
                     <a href="#">Syarat & Ketentuan</a>
                     <a href="#">Disclaimer</a>
+                    <a href="#contact">Kontak</a>
                 </div>
             </div>
         </div>
@@ -894,7 +1258,9 @@
     <!-- Notification -->
     <div id="notification" class="notification"></div>
 
-    <script src="js/main.js"></script>
+    <!-- Tooltip Container -->
+    <div id="tooltip-container"></div>
 
+    <script src="js/main.js"></script>
 </body>
 </html>

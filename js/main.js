@@ -1,9 +1,8 @@
-        // MBG Indonesia - Premium Modern JavaScript
+// MBG Indonesia - Enhanced JavaScript
 document.addEventListener('DOMContentLoaded', function() {
     // Preloader
     const preloader = document.querySelector('.preloader');
     
-    // Hide preloader after page load
     window.addEventListener('load', () => {
         setTimeout(() => {
             preloader.classList.add('loaded');
@@ -26,6 +25,10 @@ document.addEventListener('DOMContentLoaded', function() {
             hamburger.classList.remove('active');
             navLinks.classList.remove('active');
             document.body.style.overflow = '';
+            
+            // Update active nav link
+            document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
+            link.classList.add('active');
         });
     });
 
@@ -73,16 +76,62 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
-    // Location Map Interaction
+    // Location Map Interaction - IMPROVED
     const mapPoints = document.querySelectorAll('.map-point');
     const locationCards = document.querySelectorAll('.location-card');
+    const locationSearch = document.getElementById('locationSearch');
+    const provinceFilter = document.getElementById('provinceFilter');
+    const statusFilter = document.getElementById('statusFilter');
+    const searchButton = document.querySelector('.search-box .btn-primary');
     
+    // Initialize tooltips
+    mapPoints.forEach(point => {
+        const tooltipText = point.dataset.tooltip;
+        if (tooltipText) {
+            point.addEventListener('mouseenter', function(e) {
+                showTooltip(this, tooltipText);
+            });
+            
+            point.addEventListener('mouseleave', function() {
+                hideTooltip();
+            });
+        }
+    });
+    
+    function showTooltip(element, text) {
+        const tooltip = document.createElement('div');
+        tooltip.className = 'tooltip';
+        tooltip.textContent = text;
+        document.getElementById('tooltip-container').appendChild(tooltip);
+        
+        const rect = element.getBoundingClientRect();
+        tooltip.style.top = `${rect.top - tooltip.offsetHeight - 10}px`;
+        tooltip.style.left = `${rect.left + (rect.width - tooltip.offsetWidth) / 2}px`;
+        
+        setTimeout(() => tooltip.classList.add('show'), 10);
+        
+        element.tooltip = tooltip;
+    }
+    
+    function hideTooltip() {
+        const tooltip = document.querySelector('.tooltip');
+        if (tooltip) {
+            tooltip.remove();
+        }
+    }
+    
+    // Map point interaction
     mapPoints.forEach(point => {
         point.addEventListener('click', function() {
             const location = this.dataset.location;
             
             // Update active map point
-            mapPoints.forEach(p => p.classList.remove('active'));
+            mapPoints.forEach(p => {
+                p.classList.remove('active');
+                p.querySelector('.point-pulse').style.animation = 'none';
+                void p.querySelector('.point-pulse').offsetWidth;
+                p.querySelector('.point-pulse').style.animation = null;
+            });
             this.classList.add('active');
             
             // Show corresponding location card
@@ -93,17 +142,122 @@ document.addEventListener('DOMContentLoaded', function() {
                     
                     // Scroll to card if on mobile
                     if (window.innerWidth < 768) {
-                        card.scrollIntoView({
-                            behavior: 'smooth',
-                            block: 'center'
-                        });
+                        setTimeout(() => {
+                            card.scrollIntoView({
+                                behavior: 'smooth',
+                                block: 'center'
+                            });
+                        }, 300);
                     }
                 }
             });
         });
     });
 
-    // Menu Tabs
+    // Location search functionality - IMPROVED
+    function initLocationSearch() {
+        if (locationSearch) {
+            locationSearch.addEventListener('input', function() {
+                const searchTerm = this.value.toLowerCase();
+                filterLocationCards(searchTerm);
+            });
+        }
+        
+        if (searchButton) {
+            searchButton.addEventListener('click', function() {
+                const searchTerm = locationSearch ? locationSearch.value.toLowerCase() : '';
+                filterLocationCards(searchTerm);
+            });
+        }
+        
+        if (provinceFilter) {
+            provinceFilter.addEventListener('change', function() {
+                filterLocationCards();
+            });
+        }
+        
+        if (statusFilter) {
+            statusFilter.addEventListener('change', function() {
+                filterLocationCards();
+            });
+        }
+    }
+    
+    function filterLocationCards(searchTerm = '') {
+        locationCards.forEach(card => {
+            const title = card.querySelector('h3').textContent.toLowerCase();
+            const address = card.querySelector('.info-item p').textContent.toLowerCase();
+            const province = provinceFilter ? provinceFilter.value : '';
+            const status = statusFilter ? statusFilter.value : '';
+            
+            const matchesSearch = !searchTerm || 
+                title.includes(searchTerm) || 
+                address.includes(searchTerm);
+            
+            const matchesProvince = !province || 
+                (province === 'jakarta' && card.id.includes('jakarta')) ||
+                (province === 'jabar' && card.id.includes('bandung')) ||
+                (province === 'jatim' && card.id.includes('surabaya')) ||
+                (province === 'yogyakarta' && card.id.includes('yogyakarta')) ||
+                (province === 'sumut' && card.id.includes('medan')) ||
+                (province === 'sulsel' && card.id.includes('makassar'));
+            
+            const matchesStatus = !status || 
+                (status === 'active' && card.querySelector('.location-status.active')) ||
+                (status === 'coming' && !card.querySelector('.location-status.active'));
+            
+            if (matchesSearch && matchesProvince && matchesStatus) {
+                card.style.display = 'block';
+                setTimeout(() => {
+                    card.style.opacity = '1';
+                    card.style.transform = 'translateY(0)';
+                }, 10);
+            } else {
+                card.style.opacity = '0';
+                card.style.transform = 'translateY(20px)';
+                setTimeout(() => {
+                    card.style.display = 'none';
+                }, 300);
+            }
+        });
+        
+        // Show message if no cards found
+        const visibleCards = Array.from(locationCards).filter(card => 
+            card.style.display !== 'none' && card.style.opacity !== '0'
+        );
+        
+        if (visibleCards.length === 0) {
+            showNoResultsMessage();
+        } else {
+            removeNoResultsMessage();
+        }
+    }
+    
+    function showNoResultsMessage() {
+        removeNoResultsMessage();
+        
+        const message = document.createElement('div');
+        message.className = 'no-results-message';
+        message.innerHTML = `
+            <i class="fas fa-search"></i>
+            <h4>Tidak ada lokasi yang ditemukan</h4>
+            <p>Coba gunakan kata kunci lain atau filter yang berbeda</p>
+        `;
+        
+        const container = document.querySelector('.location-cards-container');
+        if (container) {
+            container.appendChild(message);
+        }
+    }
+    
+    function removeNoResultsMessage() {
+        const message = document.querySelector('.no-results-message');
+        if (message) {
+            message.remove();
+        }
+    }
+
+    // Menu Tabs - COMPLETELY FIXED
     const tabs = document.querySelectorAll('.tab');
     const tabContents = document.querySelectorAll('.tab-content');
     
@@ -120,6 +274,15 @@ document.addEventListener('DOMContentLoaded', function() {
                 content.classList.remove('active');
                 if (content.id === `${day}-menu`) {
                     content.classList.add('active');
+                    
+                    // Add animation effect
+                    content.style.opacity = '0';
+                    content.style.transform = 'translateY(20px)';
+                    
+                    setTimeout(() => {
+                        content.style.opacity = '1';
+                        content.style.transform = 'translateY(0)';
+                    }, 50);
                 }
             });
         });
@@ -148,7 +311,7 @@ document.addEventListener('DOMContentLoaded', function() {
         let value = this.value.replace(/\D/g, '');
         if (value) {
             value = parseInt(value).toLocaleString('id-ID');
-            this.value = value;
+            this.value = `Rp ${value}`;
         }
     });
     
@@ -165,25 +328,69 @@ document.addEventListener('DOMContentLoaded', function() {
         e.preventDefault();
         
         // Get form data
-        const formData = new FormData(this);
         const name = document.getElementById('donorName').value;
         const email = document.getElementById('donorEmail').value;
+        const phone = document.getElementById('donorPhone').value;
         const amount = getSelectedAmount();
+        const method = document.querySelector('.payment-method.active').dataset.method;
+        const message = document.getElementById('donorMessage').value;
         
-        // Show success notification
-        showNotification('success', `
-            <i class="fas fa-check-circle"></i>
-            <div>
-                <strong>Terima kasih ${name}!</strong><br>
-                Donasi sebesar <strong>${amount}</strong> telah berhasil direkam.<br>
-                Konfirmasi akan dikirim ke email: ${email}
-            </div>
-        `);
+        // Validate form
+        if (!name || !email || !phone) {
+            showNotification('error', `
+                <i class="fas fa-exclamation-circle"></i>
+                <div>
+                    <strong>Form tidak lengkap!</strong><br>
+                    Harap lengkapi semua field yang wajib diisi.
+                </div>
+            `);
+            return;
+        }
         
-        // Reset form
-        this.reset();
-        amountOptions[0].click();
-        paymentMethods[0].click();
+        // Email validation
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailRegex.test(email)) {
+            showNotification('error', `
+                <i class="fas fa-exclamation-circle"></i>
+                <div>
+                    <strong>Email tidak valid!</strong><br>
+                    Harap masukkan alamat email yang valid.
+                </div>
+            `);
+            return;
+        }
+        
+        // Show loading state
+        const submitBtn = this.querySelector('.btn-submit');
+        const originalText = submitBtn.innerHTML;
+        submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Memproses...';
+        submitBtn.disabled = true;
+        
+        // Simulate API call
+        setTimeout(() => {
+            // Show success notification
+            showNotification('success', `
+                <i class="fas fa-check-circle"></i>
+                <div>
+                    <strong>Terima kasih ${name}!</strong><br>
+                    Donasi sebesar <strong>${amount}</strong> via ${getMethodName(method)} telah berhasil direkam.<br>
+                    Invoice telah dikirim ke email: ${email}
+                </div>
+            `);
+            
+            // Reset form
+            this.reset();
+            amountOptions[0].classList.add('active');
+            paymentMethods[0].classList.add('active');
+            
+            // Reset button state
+            submitBtn.innerHTML = originalText;
+            submitBtn.disabled = false;
+            
+            // Send to analytics (simulated)
+            console.log('Donation recorded:', { name, email, phone, amount, method });
+            
+        }, 1500);
     });
 
     // Contact Form
@@ -194,17 +401,64 @@ document.addEventListener('DOMContentLoaded', function() {
         
         const name = document.getElementById('contactName').value;
         const email = document.getElementById('contactEmail').value;
+        const phone = document.getElementById('contactPhone').value;
+        const subject = document.getElementById('contactSubject').value;
+        const message = document.getElementById('contactMessage').value;
+        const subscribe = document.getElementById('subscribeNewsletter').checked;
         
-        showNotification('success', `
-            <i class="fas fa-check-circle"></i>
-            <div>
-                <strong>Pesan terkirim!</strong><br>
-                Terima kasih ${name}, pesan Anda telah berhasil dikirim.<br>
-                Kami akan membalas ke email: ${email}
-            </div>
-        `);
+        // Validate form
+        if (!name || !email || !phone || !subject || !message) {
+            showNotification('error', `
+                <i class="fas fa-exclamation-circle"></i>
+                <div>
+                    <strong>Form tidak lengkap!</strong><br>
+                    Harap lengkapi semua field yang wajib diisi.
+                </div>
+            `);
+            return;
+        }
         
-        this.reset();
+        // Email validation
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailRegex.test(email)) {
+            showNotification('error', `
+                <i class="fas fa-exclamation-circle"></i>
+                <div>
+                    <strong>Email tidak valid!</strong><br>
+                    Harap masukkan alamat email yang valid.
+                </div>
+            `);
+            return;
+        }
+        
+        // Show loading state
+        const submitBtn = this.querySelector('.btn-submit');
+        const originalText = submitBtn.innerHTML;
+        submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Mengirim...';
+        submitBtn.disabled = true;
+        
+        // Simulate API call
+        setTimeout(() => {
+            showNotification('success', `
+                <i class="fas fa-check-circle"></i>
+                <div>
+                    <strong>Pesan terkirim!</strong><br>
+                    Terima kasih ${name}, pesan Anda telah berhasil dikirim.<br>
+                    Kami akan membalas ke email: ${email}
+                    ${subscribe ? '<br><small>Anda telah berlangganan newsletter MBG</small>' : ''}
+                </div>
+            `);
+            
+            this.reset();
+            
+            // Reset button state
+            submitBtn.innerHTML = originalText;
+            submitBtn.disabled = false;
+            
+            // Send to analytics (simulated)
+            console.log('Contact form submitted:', { name, email, phone, subject, subscribe });
+            
+        }, 1500);
     });
 
     // Newsletter Form
@@ -215,16 +469,42 @@ document.addEventListener('DOMContentLoaded', function() {
             e.preventDefault();
             const email = this.querySelector('input[type="email"]').value;
             
-            showNotification('success', `
-                <i class="fas fa-check-circle"></i>
-                <div>
-                    <strong>Berhasil berlangganan!</strong><br>
-                    Terima kasih telah berlangganan newsletter MBG.<br>
-                    Update akan dikirim ke: ${email}
-                </div>
-            `);
+            // Email validation
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(email)) {
+                showNotification('error', `
+                    <i class="fas fa-exclamation-circle"></i>
+                    <div>
+                        <strong>Email tidak valid!</strong><br>
+                        Harap masukkan alamat email yang valid.
+                    </div>
+                `);
+                return;
+            }
             
-            this.reset();
+            // Show loading
+            const button = this.querySelector('button');
+            const originalHtml = button.innerHTML;
+            button.innerHTML = '<i class="fas fa-spinner fa-spin"></i>';
+            button.disabled = true;
+            
+            setTimeout(() => {
+                showNotification('success', `
+                    <i class="fas fa-check-circle"></i>
+                    <div>
+                        <strong>Berhasil berlangganan!</strong><br>
+                        Terima kasih telah berlangganan newsletter MBG.<br>
+                        Update akan dikirim ke: ${email}
+                    </div>
+                `);
+                
+                this.reset();
+                button.innerHTML = originalHtml;
+                button.disabled = false;
+                
+                console.log('Newsletter subscription:', { email });
+                
+            }, 1000);
         });
     });
 
@@ -312,28 +592,87 @@ document.addEventListener('DOMContentLoaded', function() {
         }, 300);
     }
 
+    // Update active navigation link based on scroll position
+    function updateActiveNavLink() {
+        const sections = document.querySelectorAll('section');
+        const navLinks = document.querySelectorAll('.nav-link');
+        
+        let currentSection = '';
+        let scrollPosition = window.scrollY + 200; // Offset for better accuracy
+        
+        sections.forEach(section => {
+            const sectionTop = section.offsetTop;
+            const sectionHeight = section.offsetHeight;
+            
+            if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
+                currentSection = section.id;
+            }
+        });
+        
+        navLinks.forEach(link => {
+            link.classList.remove('active');
+            const href = link.getAttribute('href');
+            if (href === `#${currentSection}` || 
+                (currentSection === '' && href === '#home')) {
+                link.classList.add('active');
+            }
+        });
+    }
+    
+    // Initial update
+    updateActiveNavLink();
+    
+    // Update on scroll
+    let scrollTimeout;
+    window.addEventListener('scroll', () => {
+        if (scrollTimeout) {
+            window.cancelAnimationFrame(scrollTimeout);
+        }
+        
+        scrollTimeout = window.requestAnimationFrame(() => {
+            updateActiveNavLink();
+        });
+    });
+
     // Helper Functions
     function getSelectedAmount() {
         const activeAmount = document.querySelector('.amount-option.active');
         if (activeAmount) {
             return activeAmount.querySelector('.amount').textContent;
-        } else if (customAmountInput.value) {
-            return 'Rp ' + customAmountInput.value;
+        } else if (customAmountInput && customAmountInput.value) {
+            return customAmountInput.value;
         }
         return 'Rp 0';
     }
+    
+    function getMethodName(method) {
+        switch(method) {
+            case 'bank': return 'Transfer Bank';
+            case 'ewallet': return 'E-Wallet';
+            case 'qris': return 'QRIS';
+            default: return 'Transfer';
+        }
+    }
 
-    // Initialize animations
+    // Initialize animations on scroll
     const animatedElements = document.querySelectorAll('.animate__animated');
     
     const animationObserver = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
                 const element = entry.target;
-                const animation = element.dataset.animation || 'animate__fadeInUp';
                 
-                element.style.animationDelay = element.dataset.delay || '0s';
+                // Remove existing animation classes
+                element.classList.remove('animate__fadeIn', 'animate__fadeInUp', 'animate__fadeInDown', 'animate__fadeInLeft', 'animate__fadeInRight');
+                
+                // Add new animation based on data attribute or default
+                const animation = element.dataset.animation || 'animate__fadeInUp';
                 element.classList.add(animation);
+                
+                // Add delay if specified
+                if (element.dataset.delay) {
+                    element.style.animationDelay = element.dataset.delay;
+                }
                 
                 animationObserver.unobserve(element);
             }
@@ -343,71 +682,356 @@ document.addEventListener('DOMContentLoaded', function() {
     animatedElements.forEach(element => animationObserver.observe(element));
 
     // Parallax effect for hero shapes
+    let parallaxTimeout;
     window.addEventListener('scroll', () => {
-        const scrolled = window.pageYOffset;
-        const shapes = document.querySelectorAll('.shape');
+        if (parallaxTimeout) {
+            window.cancelAnimationFrame(parallaxTimeout);
+        }
         
-        shapes.forEach((shape, index) => {
-            const speed = 0.1 * (index + 1);
-            const yPos = -(scrolled * speed);
-            shape.style.transform = `translateY(${yPos}px)`;
+        parallaxTimeout = window.requestAnimationFrame(() => {
+            const scrolled = window.pageYOffset;
+            const shapes = document.querySelectorAll('.shape');
+            
+            shapes.forEach((shape, index) => {
+                const speed = 0.05 * (index + 1);
+                const yPos = -(scrolled * speed);
+                shape.style.transform = `translateY(${yPos}px)`;
+            });
         });
     });
 
-    // Initialize tooltips
-    const tooltips = document.querySelectorAll('[data-tooltip]');
+    // Video modal functionality
+    const videoButtons = document.querySelectorAll('[href*="youtu.be"], [href*="youtube.com"]');
     
-    tooltips.forEach(element => {
-        element.addEventListener('mouseenter', function() {
-            const tooltip = document.createElement('div');
-            tooltip.className = 'tooltip';
-            tooltip.textContent = this.dataset.tooltip;
-            document.body.appendChild(tooltip);
-            
-            const rect = this.getBoundingClientRect();
-            tooltip.style.top = `${rect.top - tooltip.offsetHeight - 10}px`;
-            tooltip.style.left = `${rect.left + (rect.width - tooltip.offsetWidth) / 2}px`;
-            
-            this._tooltip = tooltip;
-        });
+    videoButtons.forEach(button => {
+        if (button.getAttribute('target') !== '_blank') {
+            button.addEventListener('click', function(e) {
+                e.preventDefault();
+                const videoUrl = this.href;
+                
+                // Create modal
+                const modal = document.createElement('div');
+                modal.className = 'video-modal';
+                modal.innerHTML = `
+                    <div class="modal-content">
+                        <button class="modal-close"><i class="fas fa-times"></i></button>
+                        <div class="video-container">
+                            <iframe src="${videoUrl.replace('watch?v=', 'embed/')}" 
+                                    frameborder="0" 
+                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                    allowfullscreen></iframe>
+                        </div>
+                    </div>
+                `;
+                
+                document.body.appendChild(modal);
+                document.body.style.overflow = 'hidden';
+                
+                // Close modal
+                const closeModal = () => {
+                    modal.remove();
+                    document.body.style.overflow = '';
+                };
+                
+                modal.querySelector('.modal-close').addEventListener('click', closeModal);
+                
+                modal.addEventListener('click', (e) => {
+                    if (e.target === modal) {
+                        closeModal();
+                    }
+                });
+                
+                // Close on Escape key
+                document.addEventListener('keydown', function closeOnEscape(e) {
+                    if (e.key === 'Escape') {
+                        closeModal();
+                        document.removeEventListener('keydown', closeOnEscape);
+                    }
+                });
+            });
+        }
+    });
+
+    // Add CSS for video modal
+    const modalStyle = document.createElement('style');
+    modalStyle.textContent = `
+        .video-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+            animation: fadeIn 0.3s ease;
+        }
         
-        element.addEventListener('mouseleave', function() {
-            if (this._tooltip) {
-                this._tooltip.remove();
-                this._tooltip = null;
+        .modal-content {
+            position: relative;
+            width: 90%;
+            max-width: 800px;
+            animation: scaleIn 0.3s ease;
+        }
+        
+        .modal-close {
+            position: absolute;
+            top: -40px;
+            right: 0;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+            padding: 0.5rem;
+            transition: transform 0.3s ease;
+        }
+        
+        .modal-close:hover {
+            transform: scale(1.1);
+        }
+        
+        .video-container {
+            position: relative;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+            border-radius: 12px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        }
+        
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+        
+        @keyframes scaleIn {
+            from { transform: scale(0.9); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+        
+        .no-results-message {
+            text-align: center;
+            padding: 3rem;
+            grid-column: 1 / -1;
+            background: var(--white);
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow);
+            margin-top: 2rem;
+        }
+        
+        .no-results-message i {
+            font-size: 3rem;
+            color: var(--gray-light);
+            margin-bottom: 1rem;
+        }
+        
+        .no-results-message h4 {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+            color: var(--dark);
+        }
+        
+        .no-results-message p {
+            color: var(--gray);
+            margin: 0;
+        }
+    `;
+    document.head.appendChild(modalStyle);
+
+    // Location card click handler
+    locationCards.forEach(card => {
+        card.addEventListener('click', function(e) {
+            // Only trigger if not clicking on buttons or links
+            if (!e.target.closest('a') && !e.target.closest('button')) {
+                locationCards.forEach(c => c.classList.remove('active'));
+                this.classList.add('active');
+                
+                // Update corresponding map point
+                const locationId = this.id.replace('-card', '');
+                mapPoints.forEach(p => {
+                    p.classList.remove('active');
+                    if (p.dataset.location === locationId) {
+                        p.classList.add('active');
+                        
+                        // Add pulse animation
+                        const pulse = p.querySelector('.point-pulse');
+                        pulse.style.animation = 'none';
+                        void pulse.offsetWidth;
+                        pulse.style.animation = 'pointPulse 2s infinite';
+                    }
+                });
+                
+                // Scroll to card with offset for header
+                setTimeout(() => {
+                    const headerHeight = header.offsetHeight;
+                    const cardTop = this.offsetTop - headerHeight - 20;
+                    
+                    window.scrollTo({
+                        top: cardTop,
+                        behavior: 'smooth'
+                    });
+                }, 300);
             }
         });
     });
 
-    // Add CSS for tooltips
-    const tooltipStyle = document.createElement('style');
-    tooltipStyle.textContent = `
-        .tooltip {
-            position: fixed;
-            background: var(--dark);
-            color: var(--white);
-            padding: 0.5rem 1rem;
-            border-radius: var(--radius);
-            font-size: 0.875rem;
-            font-weight: 500;
-            z-index: 9999;
-            pointer-events: none;
-            white-space: nowrap;
-            box-shadow: var(--shadow-lg);
+    // Initialize location search
+    initLocationSearch();
+    
+    // Add animation for map points
+    const addMapAnimations = () => {
+        mapPoints.forEach((point, index) => {
+            setTimeout(() => {
+                point.style.opacity = '0';
+                point.style.transform = 'scale(0)';
+                
+                setTimeout(() => {
+                    point.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+                    point.style.opacity = '1';
+                    point.style.transform = 'scale(1)';
+                }, index * 200);
+            }, 500);
+        });
+    };
+    
+    // Trigger map animations when section is in view
+    const locationsSection = document.getElementById('locations-menu');
+    if (locationsSection) {
+        const sectionObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    addMapAnimations();
+                    sectionObserver.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.2 });
+        
+        sectionObserver.observe(locationsSection);
+    }
+
+    // Form input animations
+    document.querySelectorAll('input, select, textarea').forEach(input => {
+        input.addEventListener('focus', function() {
+            this.parentElement.classList.add('focused');
+        });
+        
+        input.addEventListener('blur', function() {
+            if (!this.value) {
+                this.parentElement.classList.remove('focused');
+            }
+        });
+    });
+
+    // Add CSS for form animations
+    const formStyle = document.createElement('style');
+    formStyle.textContent = `
+        .form-group {
+            position: relative;
         }
         
-        .tooltip::after {
-            content: '';
+        .form-group.focused label {
+            color: var(--primary);
+            transform: translateY(-5px);
+        }
+        
+        input:focus, select:focus, textarea:focus {
+            border-color: var(--primary) !important;
+            box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1) !important;
+        }
+        
+        @keyframes pointPulse {
+            0% {
+                box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7);
+            }
+            70% {
+                box-shadow: 0 0 0 10px rgba(16, 185, 129, 0);
+            }
+            100% {
+                box-shadow: 0 0 0 0 rgba(16, 185, 129, 0);
+            }
+        }
+        
+        .search-box {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .search-box i {
             position: absolute;
-            top: 100%;
-            left: 50%;
-            transform: translateX(-50%);
-            border: 6px solid transparent;
-            border-top-color: var(--dark);
+            left: 1rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--gray);
+        }
+        
+        .search-box input {
+            flex: 1;
+            padding: 0.75rem 1rem 0.75rem 3rem;
+            border: 2px solid var(--light);
+            border-radius: var(--radius);
+            font-family: var(--font-primary);
+            font-size: 1rem;
+        }
+        
+        .search-filters {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+        
+        .search-filters select {
+            flex: 1;
+            padding: 0.75rem;
+            border: 2px solid var(--light);
+            border-radius: var(--radius);
+            background: var(--white);
+            font-family: var(--font-primary);
+        }
+        
+        @media (max-width: 768px) {
+            .search-box {
+                flex-direction: column;
+            }
+            
+            .search-filters {
+                flex-direction: column;
+            }
         }
     `;
-    document.head.appendChild(tooltipStyle);
+    document.head.appendChild(formStyle);
 
-    // Initialize
-    console.log('MBG Indonesia - Premium Modern Website Initialized');
+    // Initialize with animation
+    setTimeout(() => {
+        // Add initial animation to hero content
+        const heroContent = document.querySelector('.hero-content');
+        if (heroContent) {
+            heroContent.style.opacity = '0';
+            heroContent.style.transform = 'translateY(20px)';
+            
+            setTimeout(() => {
+                heroContent.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
+                heroContent.style.opacity = '1';
+                heroContent.style.transform = 'translateY(0)';
+            }, 300);
+        }
+    }, 100);
+
+    console.log('🎯 MBG Indonesia - Enhanced Website Initialized');
+    console.log('✅ Features loaded:');
+    console.log('   - Smooth Navigation');
+    console.log('   - Location Map Interaction');
+    console.log('   - Menu System');
+    console.log('   - Donation Form');
+    console.log('   - Contact System');
+    console.log('   - Impact Stats Counter');
+    console.log('   - Notification System');
+    console.log('   - Responsive Design');
 });
