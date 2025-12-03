@@ -8,28 +8,51 @@
     <title>Program Makan Bergizi Gratis (MBG) - Nutrisi untuk Anak Indonesia</title>
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
 </head>
 <body>
+    Preloader
+    <div class="preloader">
+        <div class="preloader-content">
+            <div class="logo-loader">
+                <i class="fas fa-heart"></i>
+                <span>MBG</span>
+            </div>
+            <div class="loader"></div>
+        </div>
+    </div>
+
     <!-- Header -->
     <header id="header">
         <div class="container">
             <nav class="navbar">
                 <a href="#" class="logo">
-                    <i class="fas fa-utensils"></i>
-                    MBG Indonesia
+                    <div class="logo-icon">
+                        <i class="fas fa-utensils"></i>
+                    </div>
+                    <div class="logo-text">
+                        <span class="logo-primary">MBG</span>
+                        <span class="logo-secondary">Indonesia</span>
+                    </div>
                 </a>
                 <ul class="nav-links">
-                    <li><a href="#home">Beranda</a></li>
-                    <li><a href="#about">Tentang MBG</a></li>
-                    <li><a href="#locations-menu">Lokasi & Menu</a></li>
-                    <li><a href="#events">Kegiatan & Event</a></li>
-                    <li><a href="#donation">Donasi & Sukarelawan</a></li>
-                    <li><a href="#testimonials">Testimoni</a></li>
-                    <li><a href="#contact">Kontak</a></li>
+                    <li><a href="#home" class="nav-link active"><i class="fas fa-home"></i> Beranda</a></li>
+                    <li><a href="#about" class="nav-link"><i class="fas fa-info-circle"></i> Tentang</a></li>
+                    <li><a href="#locations-menu" class="nav-link"><i class="fas fa-map-marker-alt"></i> Lokasi</a></li>
+                    <li><a href="#impact" class="nav-link"><i class="fas fa-chart-line"></i> Dampak</a></li>
+                    <li><a href="#donation" class="nav-link"><i class="fas fa-hand-holding-heart"></i> Donasi</a></li>
+                    <li><a href="#contact" class="nav-link"><i class="fas fa-envelope"></i> Kontak</a></li>
                 </ul>
+                <div class="nav-actions">
+                    <a href="#donation" class="btn-donate-nav">
+                        <i class="fas fa-heart"></i> Donasi Sekarang
+                    </a>
+                </div>
                 <div class="hamburger">
-                    <i class="fas fa-bars"></i>
+                    <div class="line"></div>
+                    <div class="line"></div>
+                    <div class="line"></div>
                 </div>
             </nav>
         </div>
@@ -37,189 +60,480 @@
 
     <!-- Hero Section -->
     <section class="hero" id="home">
-        <div class="container">
-            <div class="hero-content">
-                <h1>Program Makan Bergizi Gratis</h1>
-                <p>Memberikan akses makanan bergizi bagi anak-anak Indonesia untuk mendukung tumbuh kembang optimal dan masa depan yang lebih cerah.</p>
-                <a href="#donation" class="btn btn-primary">Dukung MBG</a>
+        <div class="hero-bg">
+            <div class="hero-shapes">
+                <div class="shape shape-1"></div>
+                <div class="shape shape-2"></div>
+                <div class="shape shape-3"></div>
+            </div>
+            <div class="hero-image">
+                <img src="https://images.unsplash.com/photo-1532634922-8fe0b757fb13?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80" alt="Anak-anak sehat Indonesia">
             </div>
         </div>
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-badge animate__animated animate__fadeInDown">
+                    <i class="fas fa-star"></i>
+                    <span>Program Nasional 2025</span>
+                </div>
+                <h1 class="animate__animated animate__fadeInUp">
+                    <span class="hero-title-primary">Nutrisi Untuk</span>
+                    <span class="hero-title-secondary">Generasi Emas Indonesia</span>
+                </h1>
+                <p class="hero-subtitle animate__animated animate__fadeInUp animate__delay-1s">
+                    Memberikan akses makanan bergizi bagi 50.000+ anak Indonesia untuk mendukung 
+                    tumbuh kembang optimal dan masa depan yang lebih cerah.
+                </p>
+                <div class="hero-actions animate__animated animate__fadeInUp animate__delay-2s">
+                    <a href="#donation" class="btn-hero btn-hero-primary">
+                        <i class="fas fa-heart"></i> Dukung Sekarang
+                    </a>
+                    <a href="#about" class="btn-hero btn-hero-secondary">
+                        <i class="fas fa-play-circle"></i> Lihat Video
+                    </a>
+                </div>
+                <div class="hero-stats animate__animated animate__fadeIn animate__delay-3s">
+                    <div class="stat-item">
+                        <div class="stat-number">50K+</div>
+                        <div class="stat-label">Anak Terbantu</div>
+                    </div>
+                    <div class="stat-divider"></div>
+                    <div class="stat-item">
+                        <div class="stat-number">15</div>
+                        <div class="stat-label">Provinsi</div>
+                    </div>
+                    <div class="stat-divider"></div>
+                    <div class="stat-item">
+                        <div class="stat-number">200+</div>
+                        <div class="stat-label">Lokasi MBG</div>
+                    </div>
+                    <div class="stat-divider"></div>
+                    <div class="stat-item">
+                        <div class="stat-number">95%</div>
+                        <div class="stat-label">Kepuasan</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <a href="#about" class="scroll-down">
+            <i class="fas fa-chevron-down"></i>
+        </a>
     </section>
 
     <!-- About Section -->
     <section class="about" id="about">
         <div class="container">
-            <div class="section-title">
-                <h2>Tentang MBG</h2>
+            <div class="section-header">
+                <span class="section-label">Tentang Kami</span>
+                <h2 class="section-title">Membangun Masa Depan Melalui Nutrisi</h2>
+                <p class="section-subtitle">
+                    Program MBG hadir untuk memastikan setiap anak Indonesia mendapatkan 
+                    akses makanan bergizi yang cukup untuk tumbuh kembang optimal.
+                </p>
             </div>
-            <div class="about-content">
-                <div class="about-text fade-in">
-                    <h3>Misi Kami: Nutrisi untuk Semua</h3>
-                    <p>Program Makan Bergizi Gratis (MBG) adalah inisiatif nasional yang dimulai pada tahun 2018 dengan tujuan memberikan akses makanan bergizi bagi anak-anak dari keluarga kurang mampu. Program ini berfokus pada pemenuhan kebutuhan gizi harian anak-anak usia sekolah untuk mendukung proses belajar dan tumbuh kembang mereka.</p>
-                    <p>Dengan kolaborasi antara pemerintah, perusahaan swasta, dan masyarakat, MBG telah menjangkau lebih dari 50.000 anak di 15 provinsi di Indonesia. Kami percaya bahwa setiap anak berhak atas makanan bergizi untuk mencapai potensi terbaik mereka.</p>
-                    <p>Visi kami adalah menciptakan generasi Indonesia yang sehat, cerdas, dan produktif melalui pemenuhan gizi yang optimal sejak dini.</p>
-                    <a href="#locations-menu" class="btn btn-secondary">Lihat Lokasi MBG</a>
+            <div class="about-grid">
+                <div class="about-content">
+                    <div class="mission-card">
+                        <div class="mission-icon">
+                            <i class="fas fa-bullseye"></i>
+                        </div>
+                        <div class="mission-content">
+                            <h3>Misi Kami</h3>
+                            <p>Mengurangi angka stunting dan malnutrisi di Indonesia sebesar 50% dalam 5 tahun melalui program makanan bergizi terintegrasi.</p>
+                        </div>
+                    </div>
+                    <div class="vision-card">
+                        <div class="vision-icon">
+                            <i class="fas fa-eye"></i>
+                        </div>
+                        <div class="vision-content">
+                            <h3>Visi Kami</h3>
+                            <p>Menciptakan generasi Indonesia yang sehat, cerdas, dan produktif melalui pemenuhan gizi optimal sejak usia dini.</p>
+                        </div>
+                    </div>
+                    <div class="values-grid">
+                        <div class="value-item">
+                            <div class="value-icon">
+                                <i class="fas fa-handshake"></i>
+                            </div>
+                            <h4>Kolaborasi</h4>
+                            <p>Bekerja sama dengan pemerintah, swasta, dan masyarakat.</p>
+                        </div>
+                        <div class="value-item">
+                            <div class="value-icon">
+                                <i class="fas fa-shield-alt"></i>
+                            </div>
+                            <h4>Transparansi</h4>
+                            <p>Laporan keuangan dan program yang dapat dipertanggungjawabkan.</p>
+                        </div>
+                        <div class="value-item">
+                            <div class="value-icon">
+                                <i class="fas fa-heart"></i>
+                            </div>
+                            <h4>Peduli</h4>
+                            <p>Mengedepankan kepedulian terhadap masa depan anak Indonesia.</p>
+                        </div>
+                    </div>
                 </div>
-                <div class="about-image fade-in floating">
-                    <img src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" alt="Anak-anak menikmati makanan bergizi">
+                <div class="about-visual">
+                    <div class="floating-card">
+                        <div class="floating-card-content">
+                            <h3>5 Tahun Perjalanan</h3>
+                            <div class="timeline">
+                                <div class="timeline-item">
+                                    <div class="timeline-year">2020</div>
+                                    <div class="timeline-content">
+                                        <h4>Program Perdana</h4>
+                                        <p>Dimulai dengan 100 anak di Jakarta</p>
+                                    </div>
+                                </div>
+                                <div class="timeline-item">
+                                    <div class="timeline-year">2022</div>
+                                    <div class="timeline-content">
+                                        <h4>Ekspansi Nasional</h4>
+                                        <p>Meluas ke 5 provinsi baru</p>
+                                    </div>
+                                </div>
+                                <div class="timeline-item">
+                                    <div class="timeline-year">2025</div>
+                                    <div class="timeline-content">
+                                        <h4>Target Nasional</h4>
+                                        <p>50.000 anak di 15 provinsi</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="image-gallery">
+                        <div class="gallery-item main-image">
+                            <img src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" alt="Anak-anak MBG">
+                        </div>
+                        <div class="gallery-item side-image">
+                            <img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Edukasi gizi">
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Features Section -->
-    <section class="features">
+    <!-- Locations Section -->
+    <section class="locations" id="locations-menu">
         <div class="container">
-            <div class="section-title">
-                <h2>Mengapa MBG Penting?</h2>
+            <div class="section-header">
+                <span class="section-label">Lokasi MBG</span>
+                <h2 class="section-title">Temukan Lokasi Terdekat</h2>
+                <p class="section-subtitle">
+                    MBG hadir di berbagai kota di Indonesia. Temukan lokasi terdekat untuk informasi lebih lanjut.
+                </p>
             </div>
-            <div class="features-grid">
-                <div class="feature-card fade-in">
-                    <div class="feature-icon">
-                        <i class="fas fa-heartbeat"></i>
+            
+            <!-- Map Section -->
+            <div class="map-container">
+                <div class="map-visual">
+                    <div class="map-overlay">
+                        <div class="map-point jakarta active" data-location="jakarta">
+                            <div class="point-pulse"></div>
+                            <div class="point-label">Jakarta</div>
+                        </div>
+                        <div class="map-point bandung" data-location="bandung">
+                            <div class="point-pulse"></div>
+                            <div class="point-label">Bandung</div>
+                        </div>
+                        <div class="map-point surabaya" data-location="surabaya">
+                            <div class="point-pulse"></div>
+                            <div class="point-label">Surabaya</div>
+                        </div>
+                        <div class="map-point yogyakarta" data-location="yogyakarta">
+                            <div class="point-pulse"></div>
+                            <div class="point-label">Yogyakarta</div>
+                        </div>
                     </div>
-                    <h3>Kesehatan Optimal</h3>
-                    <p>Makanan bergizi membantu mencegah stunting, anemia, dan masalah gizi lainnya yang dapat menghambat pertumbuhan anak.</p>
                 </div>
-                <div class="feature-card fade-in">
-                    <div class="feature-icon">
+            </div>
+
+            <!-- Location Cards -->
+            <div class="location-cards-container">
+                <div class="location-card active" id="jakarta-card">
+                    <div class="location-card-header">
+                        <div class="location-icon">
+                            <i class="fas fa-school"></i>
+                        </div>
+                        <div class="location-title">
+                            <h3>Jakarta Pusat</h3>
+                            <span class="location-status active">Aktif</span>
+                        </div>
+                        <div class="location-distance">
+                            <i class="fas fa-location-arrow"></i>
+                            <span>5 km dari Anda</span>
+                        </div>
+                    </div>
+                    <div class="location-card-body">
+                        <div class="location-info">
+                            <div class="info-item">
+                                <i class="fas fa-map-marker-alt"></i>
+                                <div>
+                                    <h4>Alamat</h4>
+                                    <p>SDN 01 Menteng, Jl. Besuki No. 5, Jakarta Pusat</p>
+                                </div>
+                            </div>
+                            <div class="info-item">
+                                <i class="fas fa-clock"></i>
+                                <div>
+                                    <h4>Jadwal</h4>
+                                    <p>Senin - Jumat, 12:00 - 13:00 WIB</p>
+                                </div>
+                            </div>
+                            <div class="info-item">
+                                <i class="fas fa-users"></i>
+                                <div>
+                                    <h4>Kapasitas</h4>
+                                    <p>150 anak per hari</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="location-actions">
+                            <a href="#" class="btn-location">
+                                <i class="fas fa-directions"></i> Petunjuk Arah
+                            </a>
+                            <a href="#" class="btn-location btn-location-secondary">
+                                <i class="fas fa-phone"></i> Hubungi
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="location-card" id="bandung-card">
+                    <div class="location-card-header">
+                        <div class="location-icon">
+                            <i class="fas fa-school"></i>
+                        </div>
+                        <div class="location-title">
+                            <h3>Bandung</h3>
+                            <span class="location-status active">Aktif</span>
+                        </div>
+                        <div class="location-distance">
+                            <i class="fas fa-location-arrow"></i>
+                            <span>12 km dari Anda</span>
+                        </div>
+                    </div>
+                    <div class="location-card-body">
+                        <div class="location-info">
+                            <div class="info-item">
+                                <i class="fas fa-map-marker-alt"></i>
+                                <div>
+                                    <h4>Alamat</h4>
+                                    <p>SDN 123 Cijerah, Jl. Cijerah Indah No. 45, Bandung</p>
+                                </div>
+                            </div>
+                            <div class="info-item">
+                                <i class="fas fa-clock"></i>
+                                <div>
+                                    <h4>Jadwal</h4>
+                                    <p>Senin, Rabu, Jumat, 11:30 - 12:30 WIB</p>
+                                </div>
+                            </div>
+                            <div class="info-item">
+                                <i class="fas fa-users"></i>
+                                <div>
+                                    <h4>Kapasitas</h4>
+                                    <p>200 anak per hari</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="location-actions">
+                            <a href="#" class="btn-location">
+                                <i class="fas fa-directions"></i> Petunjuk Arah
+                            </a>
+                            <a href="#" class="btn-location btn-location-secondary">
+                                <i class="fas fa-phone"></i> Hubungi
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="location-card" id="surabaya-card">
+                    <div class="location-card-header">
+                        <div class="location-icon">
+                            <i class="fas fa-school"></i>
+                        </div>
+                        <div class="location-title">
+                            <h3>Surabaya</h3>
+                            <span class="location-status active">Aktif</span>
+                        </div>
+                        <div class="location-distance">
+                            <i class="fas fa-location-arrow"></i>
+                            <span>8 km dari Anda</span>
+                        </div>
+                    </div>
+                    <div class="location-card-body">
+                        <div class="location-info">
+                            <div class="info-item">
+                                <i class="fas fa-map-marker-alt"></i>
+                                <div>
+                                    <h4>Alamat</h4>
+                                    <p>SDN Kalisari II, Jl. Raya Kalisari No. 88, Surabaya</p>
+                                </div>
+                            </div>
+                            <div class="info-item">
+                                <i class="fas fa-clock"></i>
+                                <div>
+                                    <h4>Jadwal</h4>
+                                    <p>Selasa - Kamis, 12:00 - 13:00 WIB</p>
+                                </div>
+                            </div>
+                            <div class="info-item">
+                                <i class="fas fa-users"></i>
+                                <div>
+                                    <h4>Kapasitas</h4>
+                                    <p>180 anak per hari</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="location-actions">
+                            <a href="#" class="btn-location">
+                                <i class="fas fa-directions"></i> Petunjuk Arah
+                            </a>
+                            <a href="#" class="btn-location btn-location-secondary">
+                                <i class="fas fa-phone"></i> Hubungi
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Menu Section -->
+    <section class="menu-section">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-label">Menu Bergizi</span>
+                <h2 class="section-title">Menu Sehat Setiap Hari</h2>
+                <p class="section-subtitle">
+                    Menu bergizi yang dirancang oleh ahli gizi untuk memenuhi kebutuhan nutrisi anak-anak.
+                </p>
+            </div>
+
+            <div class="menu-tabs">
+                <div class="tabs-header">
+                    <div class="tabs">
+                        <button class="tab active" data-day="senin">Senin</button>
+                        <button class="tab" data-day="selasa">Selasa</button>
+                        <button class="tab" data-day="rabu">Rabu</button>
+                        <button class="tab" data-day="kamis">Kamis</button>
+                        <button class="tab" data-day="jumat">Jumat</button>
+                    </div>
+                </div>
+
+                <div class="tabs-content">
+                    <div class="tab-content active" id="senin-menu">
+                        <div class="menu-detail">
+                            <div class="menu-image">
+                                <img src="https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" alt="Nasi Kuning Komplit">
+                                <div class="menu-badge">
+                                    <i class="fas fa-fire"></i>
+                                    450 Kalori
+                                </div>
+                            </div>
+                            <div class="menu-info">
+                                <h3>Nasi Kuning Komplit</h3>
+                                <p class="menu-description">
+                                    Menu spesial dengan nasi kuning yang kaya rempah, dilengkapi dengan 
+                                    protein hewani dan nabati untuk pertumbuhan optimal.
+                                </p>
+                                <div class="nutrition-grid">
+                                    <div class="nutrition-item">
+                                        <div class="nutrition-icon">
+                                            <i class="fas fa-drumstick-bite"></i>
+                                        </div>
+                                        <div>
+                                            <h4>Protein</h4>
+                                            <p>25g (Tinggi)</p>
+                                        </div>
+                                    </div>
+                                    <div class="nutrition-item">
+                                        <div class="nutrition-icon">
+                                            <i class="fas fa-carrot"></i>
+                                        </div>
+                                        <div>
+                                            <h4>Vitamin</h4>
+                                            <p>Vitamin A, C, E</p>
+                                        </div>
+                                    </div>
+                                    <div class="nutrition-item">
+                                        <div class="nutrition-icon">
+                                            <i class="fas fa-seedling"></i>
+                                        </div>
+                                        <div>
+                                            <h4>Serat</h4>
+                                            <p>8g (Cukup)</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <ul class="menu-items">
+                                    <li><i class="fas fa-check-circle"></i> Nasi Kuning Rempah</li>
+                                    <li><i class="fas fa-check-circle"></i> Ayam Goreng Kunyit</li>
+                                    <li><i class="fas fa-check-circle"></i> Telur Rebus</li>
+                                    <li><i class="fas fa-check-circle"></i> Sayur Bayam</li>
+                                    <li><i class="fas fa-check-circle"></i> Pisang & Susu</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Other days content would go here -->
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Impact Section -->
+    <section class="impact" id="impact">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-label">Dampak Kami</span>
+                <h2 class="section-title">Mengubah Hidup, Membangun Masa Depan</h2>
+                <p class="section-subtitle">
+                    Lihat bagaimana program MBG memberikan perubahan nyata bagi anak-anak Indonesia.
+                </p>
+            </div>
+
+            <div class="impact-stats">
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-child"></i>
+                    </div>
+                    <div class="stat-content">
+                        <div class="stat-number" data-count="85">0</div>
+                        <div class="stat-label">Penurunan Kasus Stunting</div>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">
                         <i class="fas fa-graduation-cap"></i>
                     </div>
-                    <h3>Pendidikan Berkualitas</h3>
-                    <p>Anak yang tercukupi gizinya memiliki konsentrasi lebih baik dan kemampuan belajar yang optimal di sekolah.</p>
-                </div>
-                <div class="feature-card fade-in">
-                    <div class="feature-icon">
-                        <i class="fas fa-users"></i>
-                    </div>
-                    <h3>Komunitas Sehat</h3>
-                    <p>MBG membangun kesadaran masyarakat tentang pentingnya gizi seimbang dan pola hidup sehat.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Locations & Menu Section -->
-    <section class="locations-menu" id="locations-menu">
-        <div class="container">
-            <div class="section-title">
-                <h2>Lokasi & Menu MBG</h2>
-            </div>
-            <div class="locations-menu-content">
-                <div class="locations fade-in">
-                    <h3>Lokasi MBG</h3>
-                    <ul class="location-list">
-                        <li class="location-item">
-                            <h4>Jakarta Pusat</h4>
-                            <p>SDN 01 Menteng, Jl. Besuki No. 5</p>
-                            <p>Setiap Senin-Jumat, 12:00-13:00 WIB</p>
-                        </li>
-                        <li class="location-item">
-                            <h4>Bandung</h4>
-                            <p>SDN 123 Cijerah, Jl. Cijerah Indah No. 45</p>
-                            <p>Setiap Senin, Rabu, Jumat, 11:30-12:30 WIB</p>
-                        </li>
-                        <li class="location-item">
-                            <h4>Surabaya</h4>
-                            <p>SDN Kalisari II, Jl. Raya Kalisari No. 88</p>
-                            <p>Setiap Selasa-Kamis, 12:00-13:00 WIB</p>
-                        </li>
-                        <li class="location-item">
-                            <h4>Yogyakarta</h4>
-                            <p>SDN Tegalrejo 3, Jl. Veteran No. 156</p>
-                            <p>Setiap Senin-Jumat, 11:00-12:00 WIB</p>
-                        </li>
-                    </ul>
-                </div>
-                <div class="menu fade-in">
-                    <h3>Contoh Menu Bergizi</h3>
-                    <ul class="menu-list">
-                        <li class="menu-item">
-                            <div class="menu-item-image">
-                                <img src="data:image/jpeg;base64,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" alt="Nasi Kuning, Sayur, Telur, Ayam, Pisang, Susu">
-                            </div>
-                            <div class="menu-item-content">
-                                <h4>Menu Senin</h4>
-                                <p>Nasi Kuning, Sayur, Telur, Ayam, Pisang, Susu</p>
-                            </div>
-                        </li>
-                        <li class="menu-item">
-                            <div class="menu-item-image">
-                                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTemRE42fPz7DLJrbZQoTjF9n08G6eINJDSMg&s" alt="Mie Ayam, Sayur, Melon">
-                            </div>
-                            <div class="menu-item-content">
-                                <h4>Menu Selasa</h4>
-                                <p>Mie Ayam, Sayur, Melon</p>
-                            </div>
-                        </li>
-                        <li class="menu-item">
-                            <div class="menu-item-image">
-                                <img src="data:image/jpeg;base64,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" alt="Kebab, Sayur, Pudding, Semangka">
-                            </div>
-                            <div class="menu-item-content">
-                                <h4>Menu Rabu</h4>
-                                <p>Kebab, Sayur, Pudding, Semangka</p>
-                            </div>
-                        </li>
-                        <li class="menu-item">
-                            <div class="menu-item-image">
-                                <img src="https://images.unsplash.com/photo-1551183053-bf91a1d81141?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=200&q=80" alt="Nasi, capcay, perkedel tahu, apel">
-                            </div>
-                            <div class="menu-item-content">
-                                <h4>Menu Kamis</h4>
-                                <p>Nasi, capcay, perkedel tahu, apel</p>
-                            </div>
-                        </li>
-                        <li class="menu-item">
-                            <div class="menu-item-image">
-                                <img src="https://images.unsplash.com/photo-1563245372-f21724e3856d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=200&q=80" alt="Nasi, sayur lodeh, telur pindang, pisang">
-                            </div>
-                            <div class="menu-item-content">
-                                <h4>Menu Jumat</h4>
-                                <p>Nasi, sayur lodeh, telur pindang, pisang</p>
-                            </div>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Events Section -->
-    <section class="events" id="events">
-        <div class="container">
-            <div class="section-title">
-                <h2>Kegiatan & Event MBG</h2>
-            </div>
-            <div class="events-grid">
-                <div class="event-card fade-in">
-                    <div class="event-image">
-                        <img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" alt="Kelas memasak sehat">
-                    </div>
-                    <div class="event-content">
-                        <span class="event-date">15 Oktober 2023</span>
-                        <h3>Kelas Memasak Sehat untuk Orang Tua</h3>
-                        <p>Workshop memasak makanan bergizi dengan bahan lokal yang terjangkau. Dihadiri oleh 150 orang tua dari penerima manfaat MBG.</p>
+                    <div class="stat-content">
+                        <div class="stat-number" data-count="92">0</div>
+                        <div class="stat-label">Peningkatan Konsentrasi Belajar</div>
                     </div>
                 </div>
-                <div class="event-card fade-in">
-                    <div class="event-image">
-                        <img src="https://images.unsplash.com/photo-1532634922-8fe0b757fb13?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" alt="Pemeriksaan kesehatan anak">
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-heartbeat"></i>
                     </div>
-                    <div class="event-content">
-                        <span class="event-date">5 November 2023</span>
-                        <h3>Pemeriksaan Kesehatan dan Gizi Anak</h3>
-                        <p>Kerjasama dengan puskesmas setempat untuk pemeriksaan kesehatan dan status gizi 500 anak penerima MBG.</p>
+                    <div class="stat-content">
+                        <div class="stat-number" data-count="78">0</div>
+                        <div class="stat-label">Peningkatan Kesehatan</div>
                     </div>
                 </div>
-                <div class="event-card fade-in">
-                    <div class="event-image">
-                        <img src="https://images.unsplash.com/photo-1559027615-cd4628902d4a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" alt="Panen kebun sekolah">
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-smile"></i>
                     </div>
-                    <div class="event-content">
-                        <span class="event-date">20 November 2023</span>
-                        <h3>Panen Kebun Sekolah MBG</h3>
-                        <p>Panen pertama dari kebun sekolah yang dikelola siswa dengan bimbingan guru. Hasilnya digunakan untuk program MBG.</p>
+                    <div class="stat-content">
+                        <div class="stat-number" data-count="95">0</div>
+                        <div class="stat-label">Kepuasan Orang Tua</div>
                     </div>
                 </div>
             </div>
@@ -229,127 +543,154 @@
     <!-- Donation Section -->
     <section class="donation" id="donation">
         <div class="container">
-            <div class="section-title">
-                <h2>Donasi & Sukarelawan</h2>
-            </div>
-            <div class="donation-content">
-                <div class="donation-info fade-in">
-                    <h3>Dukung Masa Depan Anak Indonesia</h3>
-                    <p>Setiap donasi Anda membantu memberikan makanan bergizi bagi anak-anak yang membutuhkan. Dengan Rp 15.000 per hari, Anda dapat memberikan satu paket makan bergizi lengkap untuk seorang anak.</p>
-                    <p>Selain donasi, kami juga membuka kesempatan bagi Anda untuk menjadi sukarelawan dalam berbagai kegiatan MBG, seperti distribusi makanan, edukasi gizi, atau pengelolaan program.</p>
-                    <p>Bersama-sama, kita dapat memastikan bahwa tidak ada anak Indonesia yang kekurangan gizi untuk tumbuh dan belajar dengan optimal.</p>
-                    <a href="#contact" class="btn btn-accent">Jadi Sukarelawan</a>
-                </div>
-                <div class="donation-form fade-in">
-                    <h3>Formulir Donasi</h3>
-                    <form id="donationForm">
-                        <div class="form-group">
-                            <label for="name">Nama Lengkap</label>
-                            <input type="text" id="name" class="form-control" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="email">Email</label>
-                            <input type="email" id="email" class="form-control" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="phone">Nomor Telepon</label>
-                            <input type="tel" id="phone" class="form-control" required>
-                        </div>
-                        <div class="form-group">
-                            <label>Jumlah Donasi</label>
-                            <div class="donation-options">
-                                <div class="donation-option active" data-amount="150000">Rp 150.000</div>
-                                <div class="donation-option" data-amount="300000">Rp 300.000</div>
-                                <div class="donation-option" data-amount="450000">Rp 450.000</div>
-                            </div>
-                            <input type="text" id="custom-amount" class="form-control" placeholder="Jumlah Lainnya">
-                        </div>
-                        <div class="form-group">
-                            <label>Metode Pembayaran</label>
-                            <div class="payment-methods">
-                                <div class="payment-method active" data-method="bank">
-                                    <div class="payment-icon">
-                                        <i class="fas fa-university"></i>
-                                    </div>
-                                    <div>Transfer Bank</div>
-                                </div>
-                                <div class="payment-method" data-method="gopay">
-                                    <div class="payment-icon">
-                                        <i class="fas fa-mobile-alt"></i>
-                                    </div>
-                                    <div>GoPay</div>
-                                </div>
-                                <div class="payment-method" data-method="ovo">
-                                    <div class="payment-icon">
-                                        <i class="fas fa-wallet"></i>
-                                    </div>
-                                    <div>OVO</div>
-                                </div>
-                            </div>
+            <div class="donation-grid">
+                <div class="donation-content">
+                    <div class="section-header">
+                        <span class="section-label">Dukung MBG</span>
+                        <h2 class="section-title">Investasi untuk Masa Depan Indonesia</h2>
+                        <p class="section-subtitle">
+                            Setiap donasi Anda membantu memberikan makanan bergizi bagi anak-anak 
+                            yang membutuhkan dan membangun generasi Indonesia yang lebih sehat.
+                        </p>
+                    </div>
 
-                            <!-- Payment Detail Box -->
-                            <div id="paymentDetailBox" class="payment-detail-box" style="display:none;">
-                                <h4>Detail Pembayaran</h4>
-                                <p id="paymentText"></p>
-                                <button id="copyNumber">Copy Nomor</button>
+                    <div class="impact-cards">
+                        <div class="impact-card">
+                            <div class="impact-icon">
+                                <i class="fas fa-utensils"></i>
+                            </div>
+                            <div class="impact-info">
+                                <h3>Rp 15.000</h3>
+                                <p>1 Paket Makan Bergizi untuk 1 Anak</p>
                             </div>
                         </div>
-                        <div class="form-group">
-                            <label for="message">Pesan (Opsional)</label>
-                            <textarea id="message" class="form-control" rows="3"></textarea>
-                        </div>
-                        <button type="submit" class="btn btn-primary btn-block">Donasi Sekarang</button>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Testimonials Section -->
-    <section class="testimonials" id="testimonials">
-        <div class="container">
-            <div class="section-title">
-                <h2>Testimoni</h2>
-            </div>
-            <div class="testimonials-container">
-                <div class="testimonial-slider">
-                    <div class="testimonial-track">
-                        <div class="testimonial-slide">
-                            <div class="testimonial-card">
-                                <div class="testimonial-avatar">
-                                    <img src="https://images.unsplash.com/photo-1494790108755-2616b612b786?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=200&q=80" alt="Sari">
-                                </div>
-                                <p class="testimonial-text">"Sejak anak saya mengikuti program MBG, berat badannya meningkat dan dia lebih semangat belajar. Saya sangat berterima kasih kepada para donatur yang telah membantu keluarga kami."</p>
-                                <p class="testimonial-author">Sari, Ibu dari penerima manfaat</p>
-                                <p class="testimonial-role">Jakarta Pusat</p>
+                        <div class="impact-card">
+                            <div class="impact-icon">
+                                <i class="fas fa-calendar-week"></i>
+                            </div>
+                            <div class="impact-info">
+                                <h3>Rp 300.000</h3>
+                                <p>Makan 1 Bulan untuk 1 Anak</p>
                             </div>
                         </div>
-                        <div class="testimonial-slide">
-                            <div class="testimonial-card">
-                                <div class="testimonial-avatar">
-                                    <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=200&q=80" alt="Budi">
-                                </div>
-                                <p class="testimonial-text">"Sebagai sukarelawan MBG, saya melihat langsung dampak positif program ini. Anak-anak yang sebelumnya lesu kini lebih aktif dan bersemangat dalam belajar."</p>
-                                <p class="testimonial-author">Budi, Sukarelawan MBG</p>
-                                <p class="testimonial-role">Bandung</p>
+                        <div class="impact-card">
+                            <div class="impact-icon">
+                                <i class="fas fa-users"></i>
                             </div>
-                        </div>
-                        <div class="testimonial-slide">
-                            <div class="testimonial-card">
-                                <div class="testimonial-avatar">
-                                    <img src="https://images.unsplash.com/photo-1544725176-7c40e5a71c5e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=200&q=80" alt="Rina">
-                                </div>
-                                <p class="testimonial-text">"Program MBG tidak hanya memberikan makanan bergizi, tetapi juga edukasi tentang pentingnya gizi seimbang. Sekarang saya lebih paham bagaimana menyiapkan makanan sehat untuk keluarga."</p>
-                                <p class="testimonial-author">Rina, Peserta kelas memasak sehat</p>
-                                <p class="testimonial-role">Surabaya</p>
+                            <div class="impact-info">
+                                <h3>Rp 1.500.000</h3>
+                                <p>Makan 1 Bulan untuk 5 Anak</p>
                             </div>
                         </div>
                     </div>
+
+                    <div class="donation-features">
+                        <div class="feature">
+                            <i class="fas fa-shield-alt"></i>
+                            <span>Donasi Aman & Terlindungi</span>
+                        </div>
+                        <div class="feature">
+                            <i class="fas fa-receipt"></i>
+                            <span>Bukti Donasi Digital</span>
+                        </div>
+                        <div class="feature">
+                            <i class="fas fa-chart-line"></i>
+                            <span>Laporan Transparan</span>
+                        </div>
+                    </div>
                 </div>
-                <div class="slider-nav">
-                    <div class="slider-dot active"></div>
-                    <div class="slider-dot"></div>
-                    <div class="slider-dot"></div>
+
+                <div class="donation-form-container">
+                    <div class="form-card">
+                        <div class="form-header">
+                            <h3><i class="fas fa-heart"></i> Donasi Sekarang</h3>
+                            <p>Pilih jumlah donasi dan metode pembayaran</p>
+                        </div>
+
+                        <form id="donationForm">
+                            <div class="form-group">
+                                <label>Pilih Jumlah Donasi</label>
+                                <div class="amount-grid">
+                                    <div class="amount-option active" data-amount="150000">
+                                        <div class="amount">Rp 150.000</div>
+                                        <div class="amount-desc">10 Paket Makan</div>
+                                    </div>
+                                    <div class="amount-option" data-amount="300000">
+                                        <div class="amount">Rp 300.000</div>
+                                        <div class="amount-desc">1 Bulan 1 Anak</div>
+                                    </div>
+                                    <div class="amount-option" data-amount="500000">
+                                        <div class="amount">Rp 500.000</div>
+                                        <div class="amount-desc">Sponsor 1 Anak</div>
+                                    </div>
+                                </div>
+                                <div class="custom-amount">
+                                    <input type="text" id="customAmount" placeholder="Jumlah Lainnya (Rp)">
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label>Metode Pembayaran</label>
+                                <div class="payment-methods">
+                                    <div class="payment-method active" data-method="bank">
+                                        <div class="payment-icon">
+                                            <i class="fas fa-university"></i>
+                                        </div>
+                                        <div class="payment-info">
+                                            <div class="payment-name">Transfer Bank</div>
+                                            <div class="payment-desc">BCA, Mandiri, BRI</div>
+                                        </div>
+                                    </div>
+                                    <div class="payment-method" data-method="ewallet">
+                                        <div class="payment-icon">
+                                            <i class="fas fa-wallet"></i>
+                                        </div>
+                                        <div class="payment-info">
+                                            <div class="payment-name">E-Wallet</div>
+                                            <div class="payment-desc">GoPay, OVO, Dana</div>
+                                        </div>
+                                    </div>
+                                    <div class="payment-method" data-method="qris">
+                                        <div class="payment-icon">
+                                            <i class="fas fa-qrcode"></i>
+                                        </div>
+                                        <div class="payment-info">
+                                            <div class="payment-name">QRIS</div>
+                                            <div class="payment-desc">Semua Bank & E-Wallet</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="donorName">Nama Lengkap</label>
+                                <input type="text" id="donorName" placeholder="Masukkan nama lengkap" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="donorEmail">Email</label>
+                                <input type="email" id="donorEmail" placeholder="email@anda.com" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="donorPhone">Nomor Telepon</label>
+                                <input type="tel" id="donorPhone" placeholder="0812-3456-7890" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="donorMessage">Pesan (Opsional)</label>
+                                <textarea id="donorMessage" rows="3" placeholder="Tulis pesan atau doa untuk anak-anak..."></textarea>
+                            </div>
+
+                            <button type="submit" class="btn-submit">
+                                <i class="fas fa-paper-plane"></i> Donasi Sekarang
+                            </button>
+
+                            <div class="form-footer">
+                                <p><i class="fas fa-lock"></i> Data Anda aman dan terlindungi</p>
+                            </div>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>
@@ -358,70 +699,107 @@
     <!-- Contact Section -->
     <section class="contact" id="contact">
         <div class="container">
-            <div class="section-title">
-                <h2>Kontak Kami</h2>
+            <div class="section-header">
+                <span class="section-label">Kontak Kami</span>
+                <h2 class="section-title">Hubungi Tim MBG</h2>
+                <p class="section-subtitle">
+                    Kami siap membantu Anda dengan informasi lebih lanjut tentang program MBG.
+                </p>
             </div>
-            <div class="contact-content">
-                <div class="contact-info fade-in">
-                    <h3>Hubungi MBG</h3>
-                    <div class="contact-details">
-                        <div class="contact-item">
-                            <div class="contact-icon">
-                                <i class="fas fa-map-marker-alt"></i>
-                            </div>
-                            <div>
-                                <h4>Alamat Kantor</h4>
-                                <p>CW7J+83H, Karang Tengah, Kec. Babakan Madang, Kabupaten Bogor, Jawa Barat 16810, Indonesia</p>
-                            </div>
+
+            <div class="contact-grid">
+                <div class="contact-info">
+                    <div class="contact-card">
+                        <div class="contact-icon">
+                            <i class="fas fa-map-marker-alt"></i>
                         </div>
-                        <div class="contact-item">
-                            <div class="contact-icon">
-                                <i class="fas fa-phone"></i>
-                            </div>
-                            <div>
-                                <h4>Telepon</h4>
-                                <p>(+62) 856-5742-4907</p>
-                            </div>
-                        </div>
-                        <div class="contact-item">
-                            <div class="contact-icon">
-                                <i class="fas fa-envelope"></i>
-                            </div>
-                            <div>
-                                <h4>Email</h4>
-                                <p>info@mbg-indonesia.org</p>
-                            </div>
+                        <div class="contact-details">
+                            <h3>Kantor Pusat</h3>
+                            <p>CW7J+83H, Karang Tengah, Kec. Babakan Madang, Kabupaten Bogor, Jawa Barat 16810</p>
                         </div>
                     </div>
-                    <h3>Ikuti Kami</h3>
-                    <div class="social-links">
-                        <a href="#" class="social-link"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
-                        <a href="https://www.instagram.com/dapooyy01/" class="social-link"><i class="fab fa-instagram"></i></a>
-                        <a href="https://www.youtube.com/@daffinafeeza5165" class="social-link"><i class="fab fa-youtube"></i></a>
+
+                    <div class="contact-card">
+                        <div class="contact-icon">
+                            <i class="fas fa-phone"></i>
+                        </div>
+                        <div class="contact-details">
+                            <h3>Telepon</h3>
+                            <p>(+62) 856-5742-4907</p>
+                            <small>Senin-Jumat, 08:00-17:00 WIB</small>
+                        </div>
+                    </div>
+
+                    <div class="contact-card">
+                        <div class="contact-icon">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <div class="contact-details">
+                            <h3>Email</h3>
+                            <p>info@mbg-indonesia.org</p>
+                            <p>donasi@mbg-indonesia.org</p>
+                        </div>
+                    </div>
+
+                    <div class="social-media">
+                        <h3>Ikuti Kami</h3>
+                        <div class="social-icons">
+                            <a href="#" class="social-icon">
+                                <i class="fab fa-facebook-f"></i>
+                            </a>
+                            <a href="#" class="social-icon">
+                                <i class="fab fa-twitter"></i>
+                            </a>
+                            <a href="https://www.instagram.com/dapooyy01/" class="social-icon">
+                                <i class="fab fa-instagram"></i>
+                            </a>
+                            <a href="https://www.youtube.com/@daffinafeeza5165" class="social-icon">
+                                <i class="fab fa-youtube"></i>
+                            </a>
+                            <a href="#" class="social-icon">
+                                <i class="fab fa-whatsapp"></i>
+                            </a>
+                        </div>
                     </div>
                 </div>
-                <div class="contact-form fade-in">
-                    <h3>Kirim Pesan</h3>
-                    <form id="contactForm">
-                        <div class="form-group">
-                            <label for="contact-name">Nama Lengkap</label>
-                            <input type="text" id="contact-name" class="form-control" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="contact-email">Email</label>
-                            <input type="email" id="contact-email" class="form-control" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="contact-subject">Subjek</label>
-                            <input type="text" id="contact-subject" class="form-control" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="contact-message">Pesan</label>
-                            <textarea id="contact-message" class="form-control" rows="5" required></textarea>
-                        </div>
-                        <button type="submit" class="btn btn-primary btn-block">Kirim Pesan</button>
-                    </form>
+
+                <div class="contact-form">
+                    <div class="form-card">
+                        <h3><i class="fas fa-paper-plane"></i> Kirim Pesan</h3>
+                        <form id="contactForm">
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="contactName">Nama Lengkap</label>
+                                    <input type="text" id="contactName" placeholder="Masukkan nama lengkap" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="contactEmail">Email</label>
+                                    <input type="email" id="contactEmail" placeholder="email@anda.com" required>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="contactSubject">Subjek</label>
+                                <select id="contactSubject" required>
+                                    <option value="">Pilih subjek</option>
+                                    <option value="donasi">Informasi Donasi</option>
+                                    <option value="sukarelawan">Menjadi Sukarelawan</option>
+                                    <option value="kerjasama">Kerjasama / Partnership</option>
+                                    <option value="informasi">Informasi Program</option>
+                                    <option value="lainnya">Lainnya</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="contactMessage">Pesan</label>
+                                <textarea id="contactMessage" rows="5" placeholder="Tulis pesan Anda di sini..." required></textarea>
+                            </div>
+
+                            <button type="submit" class="btn-submit">
+                                <i class="fas fa-paper-plane"></i> Kirim Pesan
+                            </button>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>
@@ -429,57 +807,94 @@
 
     <!-- Footer -->
     <footer>
+        <div class="footer-wave">
+            <svg viewBox="0 0 1200 120" preserveAspectRatio="none">
+                <path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z"></path>
+            </svg>
+        </div>
+
         <div class="container">
             <div class="footer-content">
-                <div class="footer-column">
-                    <h3>MBG Indonesia</h3>
-                    <p style="color: aliceblue;">Program Makan Bergizi Gratis untuk anak-anak Indonesia. Memberikan akses makanan bergizi bagi generasi penerus bangsa.</p>
-                    <div class="social-links">
+                <div class="footer-brand">
+                    <div class="logo">
+                        <div class="logo-icon">
+                            <i class="fas fa-utensils"></i>
+                        </div>
+                        <div class="logo-text">
+                            <span class="logo-primary">MBG</span>
+                            <span class="logo-secondary">Indonesia</span>
+                        </div>
+                    </div>
+                    <p class="footer-description">
+                        Membangun generasi Indonesia yang sehat dan cerdas melalui program 
+                        makanan bergizi yang berkelanjutan.
+                    </p>
+                    <div class="footer-social">
                         <a href="#" class="social-link"><i class="fab fa-facebook-f"></i></a>
                         <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
                         <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
                         <a href="#" class="social-link"><i class="fab fa-youtube"></i></a>
                     </div>
                 </div>
-                <div class="footer-column">
-                    <h3>Link Cepat</h3>
-                    <ul class="footer-links">
-                        <li><a href="#home"><i class="fas fa-home"></i> Beranda</a></li>
-                        <li><a href="#about"><i class="fas fa-info-circle"></i> Tentang MBG</a></li>
-                        <li><a href="#locations-menu"><i class="fas fa-map-marker-alt"></i> Lokasi & Menu</a></li>
-                        <li><a href="#events"><i class="fas fa-calendar-alt"></i> Kegiatan & Event</a></li>
-                        <li><a href="#donation"><i class="fas fa-hand-holding-heart"></i> Donasi</a></li>
+
+                <div class="footer-links">
+                    <h3>Tautan Cepat</h3>
+                    <ul>
+                        <li><a href="#home">Beranda</a></li>
+                        <li><a href="#about">Tentang MBG</a></li>
+                        <li><a href="#locations-menu">Lokasi MBG</a></li>
+                        <li><a href="#impact">Dampak Program</a></li>
+                        <li><a href="#donation">Donasi</a></li>
                     </ul>
                 </div>
-                <div class="footer-column">
-                    <h3>Kontak</h3>
-                    <ul class="footer-links">
-                        <li><i class="fas fa-map-marker-alt"></i>Kabupaten Bogor, Jawa Barat 16810</li>
-                        <li><i class="fas fa-phone"></i> (+62) 856-5742-4907</li>
-                        <li><i class="fas fa-envelope"></i> info@mbg-indonesia.org</li>
-                        <li><i class="fas fa-clock"></i> Senin-Jumat: 08:00-17:00</li>
+
+                <div class="footer-links">
+                    <h3>Program</h3>
+                    <ul>
+                        <li><a href="#">Makan Bergizi Gratis</a></li>
+                        <li><a href="#">Edukasi Gizi</a></li>
+                        <li><a href="#">Kelas Memasak</a></li>
+                        <li><a href="#">Pemeriksaan Kesehatan</a></li>
+                        <li><a href="#">Kebun Sekolah</a></li>
                     </ul>
                 </div>
-                <div class="footer-column">
-                    <h3>Newsletter</h3>
-                    <p style="color: aliceblue;">Dapatkan update terbaru tentang program MBG dengan berlangganan newsletter kami.</p>
+
+                <div class="footer-newsletter">
+                    <h3>Berlangganan Newsletter</h3>
+                    <p>Dapatkan update terbaru tentang program MBG</p>
                     <form class="newsletter-form">
-                        <input type="email" class="form-control" placeholder="Email Anda" required>
-                        <button type="submit" class="btn btn-accent">Berlangganan</button>
+                        <div class="input-group">
+                            <input type="email" placeholder="Email Anda" required>
+                            <button type="submit">
+                                <i class="fas fa-paper-plane"></i>
+                            </button>
+                        </div>
                     </form>
                 </div>
             </div>
+
             <div class="footer-bottom">
-                <p style="color: aliceblue;">&copy; 2025 Program Makan Bergizi Gratis (MBG). Semua hak dilindungi.</p>
+                <div class="copyright">
+                    &copy; 2025 Program Makan Bergizi Gratis (MBG). Semua hak dilindungi.
+                </div>
                 <div class="footer-legal">
                     <a href="#">Kebijakan Privasi</a>
                     <a href="#">Syarat & Ketentuan</a>
-                    <a href="#">Peta Situs</a>
+                    <a href="#">Disclaimer</a>
                 </div>
             </div>
         </div>
     </footer>
 
-    <script src="js/index.js"></script>
+    <!-- Back to Top -->
+    <button class="back-to-top">
+        <i class="fas fa-chevron-up"></i>
+    </button>
+
+    <!-- Notification -->
+    <div id="notification" class="notification"></div>
+
+    <script src="js/main.js"></script>
+
 </body>
 </html>
