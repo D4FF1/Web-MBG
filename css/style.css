@@ -968,9 +968,9 @@ header.scrolled {
 .map-point.active .point-label {
     opacity: 1;
     transform: translate(-50%, 10px);
-    background: var(--secondary);
+   background: var(--secondary);
     color: var(--white);
-}
+} 
 
 .point-pulse {
     width: 24px;
