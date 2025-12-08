@@ -1,0 +1,2397 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Program Makan Bergizi Gratis (MBG) - Memberikan akses makanan bergizi bagi anak-anak Indonesia untuk mendukung tumbuh kembang optimal">
+    <meta name="keywords" content="makan bergizi, anak Indonesia, nutrisi, donasi, sukarelawan">
+    <title>Program Makan Bergizi Gratis (MBG) - Nutrisi untuk Anak Indonesia</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <!-- Gunakan Maps JavaScript API dengan API key yang berfungsi -->
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB41DRUbKWJHPxaFjMAwdrzWzbVKartNGg&callback=initMap&libraries=places&v=weekly" async defer></script>
+</head>
+<style>
+    /* ==========================================================================
+   Modern Premium Design - MBG Indonesia
+   ========================================================================== */
+
+/* CSS Variables & Reset */
+:root {
+    /* Color Palette */
+    --primary: #6366f1;
+    --primary-dark: #4f46e5;
+    --primary-light: #818cf8;
+    --secondary: #10b981;
+    --secondary-dark: #059669;
+    --accent: #f59e0b;
+    --danger: #ef4444;
+    
+    /* Neutral Colors */
+    --dark: #1f2937;
+    --dark-light: #374151;
+    --gray: #6b7280;
+    --gray-light: #9ca3af;
+    --light: #f3f4f6;
+    --white: #ffffff;
+    
+    /* Gradients */
+    --gradient-primary: linear-gradient(135deg, var(--primary), var(--primary-dark));
+    --gradient-secondary: linear-gradient(135deg, var(--secondary), var(--secondary-dark));
+    --gradient-accent: linear-gradient(135deg, var(--accent), #fbbf24);
+    --gradient-dark: linear-gradient(135deg, var(--dark), #111827);
+    
+    /* Shadows */
+    --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+    --shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+    --shadow-md: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+    --shadow-lg: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+    --shadow-xl: 0 25px 50px -12px rgb(0 0 0 / 0.25);
+    
+    /* Transitions */
+    --transition-fast: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-slow: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    
+    /* Border Radius */
+    --radius-sm: 0.5rem;
+    --radius: 0.75rem;
+    --radius-lg: 1rem;
+    --radius-xl: 1.5rem;
+    --radius-full: 9999px;
+    
+    /* Spacing */
+    --space-xs: 0.5rem;
+    --space-sm: 1rem;
+    --space-md: 1.5rem;
+    --space-lg: 2rem;
+    --space-xl: 3rem;
+    --space-2xl: 4rem;
+    
+    /* Typography */
+    --font-primary: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    --font-secondary: 'Poppins', -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+    font-size: 16px;
+}
+
+body {
+    font-family: var(--font-primary);
+    font-size: 1rem;
+    line-height: 1.6;
+    color: var(--dark);
+    background: var(--white);
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 var(--space-lg);
+}
+
+/* Typography */
+h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-secondary);
+    font-weight: 700;
+    line-height: 1.2;
+    color: var(--dark);
+}
+
+p {
+    margin-bottom: 1rem;
+    color: var(--gray);
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+    transition: var(--transition);
+}
+
+/* Preloader */
+.preloader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: var(--white);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+    transition: opacity 0.3s, visibility 0.3s;
+}
+
+.preloader.loaded {
+    opacity: 0;
+    visibility: hidden;
+}
+
+.preloader-content {
+    text-align: center;
+}
+
+.logo-loader {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    margin-bottom: 2rem;
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--primary);
+}
+
+.logo-loader i {
+    animation: pulse 2s infinite;
+}
+
+.loader {
+    width: 48px;
+    height: 48px;
+    border: 3px solid var(--light);
+    border-top-color: var(--primary);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+@keyframes pulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+}
+
+/* Header */
+header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+    transition: var(--transition-slow);
+}
+
+header.scrolled {
+    background: rgba(255, 255, 255, 0.98);
+    box-shadow: var(--shadow);
+}
+
+.navbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1.5rem 0;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    text-decoration: none;
+}
+
+.logo-icon {
+    width: 40px;
+    height: 40px;
+    background: var(--gradient-primary);
+    border-radius: var(--radius);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--white);
+    font-size: 1.2rem;
+}
+
+.logo-text {
+    display: flex;
+    flex-direction: column;
+    line-height: 1.2;
+}
+
+.logo-primary {
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: var(--dark);
+    letter-spacing: -0.5px;
+}
+
+.logo-secondary {
+    font-size: 0.75rem;
+    font-weight: 500;
+    color: var(--gray);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.nav-links {
+    display: flex;
+    list-style: none;
+    gap: 2rem;
+    margin: 0;
+    padding: 0;
+}
+
+.nav-link {
+    position: relative;
+    font-weight: 500;
+    color: var(--dark-light);
+    padding: 0.5rem 0;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.nav-link::before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: var(--gradient-primary);
+    transition: var(--transition);
+}
+
+.nav-link:hover,
+.nav-link.active {
+    color: var(--primary);
+}
+
+.nav-link.active::before {
+    width: 100%;
+}
+
+.nav-actions {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.btn-donate-nav {
+    padding: 0.5rem 1.5rem;
+    background: var(--gradient-primary);
+    color: var(--white);
+    border-radius: var(--radius-full);
+    font-weight: 600;
+    font-size: 0.9rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: var(--transition);
+}
+
+.btn-donate-nav:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow);
+}
+
+.hamburger {
+    display: none;
+    flex-direction: column;
+    gap: 4px;
+    cursor: pointer;
+    padding: 0.5rem;
+}
+
+.hamburger .line {
+    width: 25px;
+    height: 2px;
+    background: var(--dark);
+    transition: var(--transition);
+}
+
+.hamburger.active .line:nth-child(1) {
+    transform: rotate(45deg) translate(6px, 6px);
+}
+
+.hamburger.active .line:nth-child(2) {
+    opacity: 0;
+}
+
+.hamburger.active .line:nth-child(3) {
+    transform: rotate(-45deg) translate(6px, -6px);
+}
+
+/* Hero Section */
+.hero {
+    position: relative;
+    min-height: 100vh;
+    background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+    padding-top: 80px;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+}
+
+.hero .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 var(--space-lg);
+}
+
+.hero-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    align-items: center;
+}
+
+.hero-content {
+    max-width: 600px;
+}
+
+.hero-badge {
+    display: inline-flex;
+    align-items: center;
+    background: linear-gradient(135deg, #ff6b6b, #ff8e53);
+    color: white;
+    padding: 8px 16px;
+    border-radius: 50px;
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: 30px;
+}
+
+.hero-badge i {
+    margin-right: 8px;
+    font-size: 12px;
+}
+
+.hero-title-primary {
+    display: block;
+    font-size: 48px;
+    font-weight: 700;
+    color: var(--dark);
+    line-height: 1.2;
+}
+
+.hero-title-secondary {
+    display: block;
+    font-size: 48px;
+    font-weight: 800;
+    background: var(--gradient-primary);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    line-height: 1.2;
+}
+
+.hero-subtitle {
+    font-size: 18px;
+    color: var(--gray);
+    line-height: 1.6;
+    margin: 20px 0 30px;
+}
+
+.hero-actions {
+    display: flex;
+    gap: 20px;
+    margin-bottom: 50px;
+}
+
+.btn-hero {
+    padding: 16px 32px;
+    border-radius: 50px;
+    font-weight: 600;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transition: var(--transition);
+}
+
+.btn-hero-primary {
+    background: var(--gradient-primary);
+    color: var(--white);
+    border: none;
+}
+
+.btn-hero-primary:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 20px rgba(79, 172, 254, 0.3);
+}
+
+.btn-hero-secondary {
+    background: transparent;
+    color: var(--primary);
+    border: 2px solid var(--primary);
+}
+
+.btn-hero-secondary:hover {
+    background: rgba(79, 172, 254, 0.1);
+    transform: translateY(-3px);
+}
+
+.hero-stats {
+    display: flex;
+    align-items: center;
+    background: var(--white);
+    padding: 25px;
+    border-radius: 20px;
+    box-shadow: var(--shadow);
+}
+
+.stat-item {
+    text-align: center;
+    flex: 1;
+}
+
+.stat-number {
+    font-size: 32px;
+    font-weight: 800;
+    color: var(--dark);
+    line-height: 1;
+}
+
+.stat-label {
+    font-size: 14px;
+    color: var(--gray);
+    margin-top: 5px;
+}
+
+.stat-divider {
+    width: 1px;
+    height: 40px;
+    background: #e0e6ef;
+    margin: 0 20px;
+}
+
+/* Hero Image Styles */
+.hero-image {
+    position: relative;
+}
+
+.hero-image-container {
+    position: relative;
+    border-radius: var(--radius-xl);
+    overflow: hidden;
+    box-shadow: var(--shadow-xl);
+}
+
+.hero-image-container img {
+    width: 100%;
+    height: 500px;
+    object-fit: cover;
+    transition: var(--transition-slow);
+}
+
+.hero-image-container:hover img {
+    transform: scale(1.05);
+}
+
+.hero-image-overlay {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    right: 20px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.floating-badge {
+    background: rgba(255, 255, 255, 0.95);
+    padding: 10px 20px;
+    border-radius: var(--radius-full);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-weight: 600;
+    color: var(--dark);
+    box-shadow: var(--shadow);
+}
+
+.badge-2 {
+    background: rgba(255, 255, 255, 0.95);
+}
+
+.hero-image-caption {
+    text-align: center;
+    margin-top: 20px;
+    color: var(--gray);
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+.hero-image-caption i {
+    color: var(--secondary);
+}
+
+/* Scroll Down Button */
+.scroll-down {
+    position: absolute;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 40px;
+    height: 40px;
+    background: var(--white);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--primary);
+    text-decoration: none;
+    animation: bounce 2s infinite;
+    box-shadow: var(--shadow);
+    z-index: 2;
+}
+
+@keyframes bounce {
+    0%, 20%, 50%, 80%, 100% {
+        transform: translateX(-50%) translateY(0);
+    }
+    40% {
+        transform: translateX(-50%) translateY(-10px);
+    }
+    60% {
+        transform: translateX(-50%) translateY(-5px);
+    }
+}
+
+/* Section Styles */
+.section-header {
+    text-align: center;
+    max-width: 800px;
+    margin: 0 auto 4rem;
+}
+
+.section-label {
+    display: inline-block;
+    background: var(--gradient-primary);
+    color: var(--white);
+    padding: 0.5rem 1rem;
+    border-radius: var(--radius-full);
+    font-size: 0.875rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.section-title {
+    font-size: 2.5rem;
+    font-weight: 800;
+    margin-bottom: 1rem;
+    color: var(--dark);
+    line-height: 1.2;
+}
+
+.section-subtitle {
+    font-size: 1.125rem;
+    color: var(--gray);
+    line-height: 1.6;
+}
+
+/* About Section */
+.about {
+    padding: 8rem 0;
+    background: var(--white);
+}
+
+/* Locations Section */
+.locations {
+    padding: 8rem 0;
+    background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+    position: relative;
+    overflow: hidden;
+}
+
+.locations::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%239C92AC' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+}
+
+/* Location Search Styles */
+.location-search {
+    margin-bottom: 2rem;
+}
+
+.search-box {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+
+.search-box .input-group {
+    flex: 1;
+    position: relative;
+}
+
+.search-box i {
+    position: absolute;
+    left: 1rem;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--gray);
+    z-index: 1;
+}
+
+.search-box input {
+    width: 100%;
+    padding: 0.75rem 1rem 0.75rem 3rem;
+    border: 2px solid var(--light);
+    border-radius: var(--radius);
+    font-family: var(--font-primary);
+    font-size: 1rem;
+    transition: var(--transition);
+    background: var(--white);
+}
+
+.search-box input:focus {
+    outline: none;
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
+}
+
+.btn-primary {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1.5rem;
+    background: var(--gradient-primary);
+    color: var(--white);
+    border: none;
+    border-radius: var(--radius);
+    font-weight: 600;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+}
+
+.btn-secondary {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1.5rem;
+    background: var(--gradient-secondary);
+    color: var(--white);
+    border: none;
+    border-radius: var(--radius);
+    font-weight: 600;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.btn-secondary:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+}
+
+.search-filters {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+.search-filters select {
+    flex: 1;
+    min-width: 200px;
+    padding: 0.75rem;
+    border: 2px solid var(--light);
+    border-radius: var(--radius);
+    font-family: var(--font-primary);
+    font-size: 0.875rem;
+    background: var(--white);
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.search-filters select:focus {
+    outline: none;
+    border-color: var(--primary);
+}
+
+/* Map Container - IMPROVED */
+.map-container {
+    position: relative;
+    height: 500px;
+    background: var(--white);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow);
+    margin-bottom: 3rem;
+    overflow: hidden;
+}
+
+#map {
+    width: 100%;
+    height: 100%;
+    border-radius: var(--radius-lg);
+}
+
+.map-controls {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    z-index: 1000;
+}
+
+.map-control-btn {
+    background: var(--white);
+    color: var(--dark);
+    border: 1px solid var(--light);
+    border-radius: var(--radius);
+    padding: 10px 15px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: var(--transition);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    box-shadow: var(--shadow);
+}
+
+.map-control-btn:hover {
+    background: var(--primary);
+    color: var(--white);
+    transform: translateY(-2px);
+}
+
+.map-control-btn i {
+    font-size: 12px;
+}
+
+.map-legend {
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+    background: var(--white);
+    padding: 15px;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    z-index: 1000;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.legend-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 12px;
+    color: var(--dark);
+}
+
+.legend-color {
+    width: 15px;
+    height: 15px;
+    border-radius: 3px;
+}
+
+/* Info Window Styles */
+.info-window {
+    max-width: 300px;
+    padding: 15px;
+    font-family: var(--font-primary);
+}
+
+.info-window h3 {
+    font-size: 16px;
+    margin-bottom: 8px;
+    color: var(--primary);
+    font-weight: 600;
+}
+
+.info-window p {
+    font-size: 12px;
+    margin-bottom: 5px;
+    color: var(--gray);
+    line-height: 1.4;
+}
+
+.info-window .info-status {
+    display: inline-block;
+    background: var(--secondary);
+    color: var(--white);
+    padding: 3px 8px;
+    border-radius: var(--radius-sm);
+    font-size: 10px;
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+
+.info-window .info-actions {
+    display: flex;
+    gap: 8px;
+    margin-top: 10px;
+}
+
+.info-window .btn-info {
+    flex: 1;
+    padding: 6px 12px;
+    border-radius: var(--radius-sm);
+    font-size: 11px;
+    font-weight: 600;
+    text-align: center;
+    text-decoration: none;
+    transition: var(--transition);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+}
+
+.btn-info-primary {
+    background: var(--primary);
+    color: var(--white);
+}
+
+.btn-info-primary:hover {
+    background: var(--primary-dark);
+    color: var(--white);
+}
+
+.btn-info-secondary {
+    background: transparent;
+    color: var(--primary);
+    border: 1px solid var(--primary);
+}
+
+.btn-info-secondary:hover {
+    background: var(--primary);
+    color: var(--white);
+}
+
+/* Location Cards Container */
+.location-cards-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 2rem;
+    margin-top: 4rem;
+}
+
+.location-card {
+    background: var(--white);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow);
+    overflow: hidden;
+    transition: var(--transition);
+    opacity: 0.7;
+    transform: translateY(20px);
+    position: relative;
+    cursor: pointer;
+}
+
+.location-card.active {
+    opacity: 1;
+    transform: translateY(0);
+    box-shadow: var(--shadow-lg);
+    border: 2px solid var(--primary);
+}
+
+.location-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-lg);
+}
+
+.location-card-header {
+    padding: 1.5rem;
+    background: var(--gradient-primary);
+    color: var(--white);
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.location-icon {
+    width: 50px;
+    height: 50px;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: var(--radius);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.25rem;
+}
+
+.location-title {
+    flex: 1;
+}
+
+.location-title h3 {
+    color: var(--white);
+    margin-bottom: 0.25rem;
+    font-size: 1.25rem;
+}
+
+.location-status {
+    display: inline-block;
+    background: var(--secondary);
+    color: var(--white);
+    padding: 0.25rem 0.75rem;
+    border-radius: var(--radius-full);
+    font-size: 0.75rem;
+    font-weight: 600;
+}
+
+.location-status.active {
+    background: var(--secondary);
+}
+
+.location-distance {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.875rem;
+    opacity: 0.9;
+}
+
+.location-card-body {
+    padding: 1.5rem;
+}
+
+.info-item {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+    align-items: flex-start;
+}
+
+.info-item:last-child {
+    margin-bottom: 0;
+}
+
+.info-item i {
+    color: var(--primary);
+    font-size: 1.25rem;
+    margin-top: 0.25rem;
+    min-width: 24px;
+}
+
+.info-item h4 {
+    font-size: 0.875rem;
+    color: var(--gray);
+    margin-bottom: 0.25rem;
+    font-weight: 600;
+}
+
+.info-item p {
+    margin: 0;
+    color: var(--dark);
+    font-weight: 500;
+}
+
+.location-features {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin: 1rem 0;
+}
+
+.feature-tag {
+    background: var(--light);
+    color: var(--dark);
+    padding: 0.25rem 0.75rem;
+    border-radius: var(--radius-full);
+    font-size: 0.75rem;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+}
+
+.feature-tag i {
+    color: var(--primary);
+    font-size: 0.75rem;
+}
+
+.location-actions {
+    display: flex;
+    gap: 1rem;
+    margin-top: 2rem;
+}
+
+.btn-location {
+    flex: 1;
+    padding: 0.75rem;
+    border-radius: var(--radius);
+    font-weight: 600;
+    font-size: 0.875rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    transition: var(--transition);
+    text-decoration: none;
+}
+
+.btn-location-primary {
+    background: var(--primary);
+    color: var(--white);
+}
+
+.btn-location-primary:hover {
+    background: var(--primary-dark);
+    transform: translateY(-2px);
+}
+
+.btn-location-secondary {
+    background: transparent;
+    color: var(--primary);
+    border: 2px solid var(--primary);
+}
+
+.btn-location-secondary:hover {
+    background: var(--primary);
+    color: var(--white);
+}
+
+/* No Results Message */
+.no-results-message {
+    text-align: center;
+    padding: 3rem;
+    grid-column: 1 / -1;
+    background: var(--white);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow);
+    margin-top: 2rem;
+}
+
+.no-results-message i {
+    font-size: 3rem;
+    color: var(--gray-light);
+    margin-bottom: 1rem;
+}
+
+.no-results-message h4 {
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+    color: var(--dark);
+}
+
+.no-results-message p {
+    color: var(--gray);
+    margin: 0;
+}
+
+/* Notification */
+.notification {
+    position: fixed;
+    top: 100px;
+    right: 2rem;
+    background: var(--white);
+    color: var(--dark);
+    padding: 1rem 1.5rem;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow-xl);
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    transform: translateX(400px);
+    transition: var(--transition);
+    z-index: 1000;
+    max-width: 400px;
+}
+
+.notification.show {
+    transform: translateX(0);
+}
+
+.notification.success {
+    border-left: 4px solid var(--secondary);
+}
+
+.notification.error {
+    border-left: 4px solid var(--danger);
+}
+
+.notification.info {
+    border-left: 4px solid var(--primary);
+}
+
+.notification i {
+    font-size: 1.5rem;
+}
+
+.notification.success i {
+    color: var(--secondary);
+}
+
+.notification.error i {
+    color: var(--danger);
+}
+
+.notification.info i {
+    color: var(--primary);
+}
+
+.notification-close {
+    margin-left: auto;
+    background: none;
+    border: none;
+    color: var(--gray);
+    cursor: pointer;
+    padding: 0.25rem;
+    font-size: 1rem;
+    transition: var(--transition);
+}
+
+.notification-close:hover {
+    color: var(--dark);
+}
+
+/* Responsive Design */
+@media (max-width: 1200px) {
+    .container {
+        padding: 0 2rem;
+    }
+}
+
+@media (max-width: 1024px) {
+    .hero-title-primary,
+    .hero-title-secondary {
+        font-size: 2.75rem;
+    }
+    
+    .hero-grid {
+        grid-template-columns: 1fr;
+        text-align: center;
+        gap: 40px;
+    }
+    
+    .hero-image {
+        order: -1;
+    }
+    
+    .hero-image-container img {
+        height: 400px;
+    }
+    
+    .hero-actions {
+        justify-content: center;
+    }
+    
+    .location-cards-container {
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    }
+}
+
+@media (max-width: 768px) {
+    html {
+        font-size: 14px;
+    }
+    
+    .hamburger {
+        display: flex;
+    }
+    
+    .nav-links {
+        position: fixed;
+        top: 80px;
+        left: -100%;
+        width: 100%;
+        height: calc(100vh - 80px);
+        background: var(--white);
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-start;
+        padding-top: 3rem;
+        gap: 0;
+        transition: var(--transition);
+        box-shadow: var(--shadow-lg);
+    }
+    
+    .nav-links.active {
+        left: 0;
+    }
+    
+    .nav-links li {
+        width: 100%;
+        text-align: center;
+        padding: 1rem;
+    }
+    
+    .nav-link {
+        justify-content: center;
+        font-size: 1.25rem;
+    }
+    
+    .nav-actions {
+        display: none;
+    }
+    
+    .hero-title-primary,
+    .hero-title-secondary {
+        font-size: 2.25rem;
+    }
+    
+    .hero-subtitle {
+        font-size: 1.125rem;
+    }
+    
+    .hero-stats {
+        flex-direction: column;
+        align-items: center;
+        gap: 20px;
+    }
+    
+    .stat-divider {
+        display: none;
+    }
+    
+    .hero-actions {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .hero-image-container img {
+        height: 300px;
+    }
+    
+    .location-cards-container {
+        grid-template-columns: 1fr;
+    }
+    
+    .map-container {
+        height: 400px;
+    }
+    
+    .search-box {
+        flex-direction: column;
+    }
+    
+    .search-filters {
+        flex-direction: column;
+    }
+    
+    .search-filters select {
+        min-width: 100%;
+    }
+    
+    .location-card-header {
+        flex-direction: column;
+        text-align: center;
+        gap: 1rem;
+    }
+    
+    .location-distance {
+        justify-content: center;
+    }
+    
+    .location-actions {
+        flex-direction: column;
+    }
+}
+
+@media (max-width: 480px) {
+    .container {
+        padding: 0 1rem;
+    }
+    
+    .hero-title-primary,
+    .hero-title-secondary {
+        font-size: 2rem;
+    }
+    
+    .section-title {
+        font-size: 1.75rem;
+    }
+    
+    .hero-stats {
+        padding: 20px;
+    }
+    
+    .stat-number {
+        font-size: 28px;
+    }
+    
+    .map-container {
+        height: 300px;
+    }
+    
+    .map-controls {
+        top: 10px;
+        right: 10px;
+    }
+    
+    .map-legend {
+        bottom: 10px;
+        left: 10px;
+        padding: 10px;
+    }
+}
+</style>
+<body>
+    <!-- Preloader -->
+    <div class="preloader">
+        <div class="preloader-content">
+            <div class="logo-loader">
+                <i class="fas fa-heart"></i>
+                <span>MBG</span>
+            </div>
+            <div class="loader"></div>
+        </div>
+    </div>
+
+    <!-- Header -->
+    <header id="header">
+        <div class="container">
+            <nav class="navbar">
+                <a href="#" class="logo">
+                    <div class="logo-icon">
+                        <i class="fas fa-utensils"></i>
+                    </div>
+                    <div class="logo-text">
+                        <span class="logo-primary">MBG</span>
+                        <span class="logo-secondary">Indonesia</span>
+                    </div>
+                </a>
+                <ul class="nav-links">
+                    <li><a href="#home" class="nav-link active"><i class="fas fa-home"></i> Beranda</a></li>
+                    <li><a href="#about" class="nav-link"><i class="fas fa-info-circle"></i> Tentang</a></li>
+                    <li><a href="#locations" class="nav-link"><i class="fas fa-map-marker-alt"></i> Lokasi</a></li>
+                    <li><a href="#menu" class="nav-link"><i class="fas fa-utensils"></i> Menu</a></li>
+                    <li><a href="#impact" class="nav-link"><i class="fas fa-chart-line"></i> Dampak</a></li>
+                    <li><a href="#donation" class="nav-link"><i class="fas fa-hand-holding-heart"></i> Donasi</a></li>
+                    <li><a href="#contact" class="nav-link"><i class="fas fa-envelope"></i> Kontak</a></li>
+                </ul>
+                <div class="nav-actions">
+                    <a href="#donation" class="btn-donate-nav">
+                        <i class="fas fa-heart"></i> Donasi Sekarang
+                    </a>
+                </div>
+                <div class="hamburger">
+                    <div class="line"></div>
+                    <div class="line"></div>
+                    <div class="line"></div>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="container">
+            <div class="hero-grid">
+                <!-- Hero Content (Kiri) -->
+                <div class="hero-content">
+                    <div class="hero-badge animate__animated animate__fadeInDown">
+                        <i class="fas fa-star"></i>
+                        <span>Program Nasional 2025</span>
+                    </div>
+                    <h1 class="animate__animated animate__fadeInUp">
+                        <span class="hero-title-primary">Nutrisi Untuk</span>
+                        <span class="hero-title-secondary">Generasi Emas Indonesia</span>
+                    </h1>
+                    <p class="hero-subtitle animate__animated animate__fadeInUp animate__delay-1s">
+                        Memberikan akses makanan bergizi bagi 50.000+ anak Indonesia untuk mendukung 
+                        tumbuh kembang optimal dan masa depan yang lebih cerah.
+                    </p>
+                    <div class="hero-actions animate__animated animate__fadeInUp animate__delay-2s">
+                        <a href="#donation" class="btn-hero btn-hero-primary">
+                            <i class="fas fa-heart"></i> Dukung Sekarang
+                        </a>
+                        <a href="https://youtu.be/example-video" class="btn-hero btn-hero-secondary" target="_blank">
+                            <i class="fas fa-play-circle"></i> Lihat Video
+                        </a>
+                    </div>
+                    <div class="hero-stats animate__animated animate__fadeIn animate__delay-3s">
+                        <div class="stat-item">
+                            <div class="stat-number">50K+</div>
+                            <div class="stat-label">Anak Terbantu</div>
+                        </div>
+                        <div class="stat-divider"></div>
+                        <div class="stat-item">
+                            <div class="stat-number">15</div>
+                            <div class="stat-label">Provinsi</div>
+                        </div>
+                        <div class="stat-divider"></div>
+                        <div class="stat-item">
+                            <div class="stat-number">200+</div>
+                            <div class="stat-label">Lokasi MBG</div>
+                        </div>
+                        <div class="stat-divider"></div>
+                        <div class="stat-item">
+                            <div class="stat-number">95%</div>
+                            <div class="stat-label">Kepuasan</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Hero Image (Kanan) -->
+                <div class="hero-image animate__animated animate__fadeInRight">
+                    <div class="hero-image-container">
+                        <img src="https://images.unsplash.com/photo-1565958011703-44f9829ba187?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" alt="Makanan bergizi untuk anak-anak">
+                        <div class="hero-image-overlay">
+                            <div class="floating-badge">
+                                <i class="fas fa-utensils"></i>
+                                <span>Menu Seimbang</span>
+                            </div>
+                            <div class="floating-badge badge-2">
+                                <i class="fas fa-apple-alt"></i>
+                                <span>100% Alami</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="hero-image-caption">
+                        <i class="fas fa-check-circle"></i>
+                        <span>Menu harian dirancang oleh ahli gizi</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <a href="#about" class="scroll-down">
+            <i class="fas fa-chevron-down"></i>
+        </a>
+    </section>
+
+    <!-- About Section -->
+    <section class="about" id="about">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-label">Tentang Kami</span>
+                <h2 class="section-title">Membangun Masa Depan Melalui Nutrisi</h2>
+                <p class="section-subtitle">
+                    Program MBG hadir untuk memastikan setiap anak Indonesia mendapatkan 
+                    akses makanan bergizi yang cukup untuk tumbuh kembang optimal.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Locations Section - IMPROVED WITH GOOGLE MAPS -->
+    <section class="locations" id="locations">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-label">Lokasi MBG</span>
+                <h2 class="section-title">Temukan Lokasi Terdekat</h2>
+                <p class="section-subtitle">
+                    MBG hadir di berbagai sekolah di Indonesia. Temukan lokasi terdekat untuk informasi lebih lanjut.
+                </p>
+            </div>
+            
+            <!-- Location Search - ENHANCED -->
+            <div class="location-search">
+                <div class="search-box">
+                    <div class="input-group">
+                        <i class="fas fa-search"></i>
+                        <input type="text" id="locationSearch" placeholder="Cari lokasi berdasarkan kota, kecamatan, atau nama sekolah...">
+                    </div>
+                    <button class="btn-primary search-btn" id="searchBtn">
+                        <i class="fas fa-map-marker-alt"></i> Cari
+                    </button>
+                </div>
+                <div class="search-filters">
+                    <select id="provinceFilter">
+                        <option value="">Semua Provinsi</option>
+                        <option value="jakarta">DKI Jakarta</option>
+                        <option value="jabar">Jawa Barat</option>
+                        <option value="jatim">Jawa Timur</option>
+                        <option value="yogyakarta">DI Yogyakarta</option>
+                        <option value="sumut">Sumatera Utara</option>
+                        <option value="sulsel">Sulawesi Selatan</option>
+                    </select>
+                    <select id="statusFilter">
+                        <option value="">Semua Status</option>
+                        <option value="active">Aktif</option>
+                        <option value="coming">Akan Datang</option>
+                    </select>
+                    <button class="btn-secondary" id="resetFilters">
+                        <i class="fas fa-redo"></i> Reset Filter
+                    </button>
+                </div>
+            </div>
+
+            <!-- Map Container - IMPROVED -->
+            <div class="map-container">
+                <div id="map"></div>
+                <div class="map-controls">
+                    <button class="map-control-btn" id="currentLocationBtn">
+                        <i class="fas fa-location-arrow"></i> Lokasi Saya
+                    </button>
+                    <button class="map-control-btn" id="zoomInBtn">
+                        <i class="fas fa-plus"></i>
+                    </button>
+                    <button class="map-control-btn" id="zoomOutBtn">
+                        <i class="fas fa-minus"></i>
+                    </button>
+                </div>
+                <div class="map-legend">
+                    <div class="legend-item">
+                        <div class="legend-color" style="background-color: #4f46e5;"></div>
+                        <span>Sekolah MBG Aktif</span>
+                    </div>
+                    <div class="legend-item">
+                        <div class="legend-color" style="background-color: #10b981;"></div>
+                        <span>Lokasi Pencarian</span>
+                    </div>
+                    <div class="legend-item">
+                        <div class="legend-color" style="background-color: #3b82f6;"></div>
+                        <span>Lokasi Anda</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Location Cards Container -->
+            <div class="location-cards-container" id="locationCardsContainer">
+                <!-- Cards akan di-generate oleh JavaScript -->
+            </div>
+
+            <!-- No Results Message -->
+            <div class="no-results-message" id="noResultsMessage" style="display: none;">
+                <i class="fas fa-map-marker-alt"></i>
+                <h4>Tidak Ada Lokasi Ditemukan</h4>
+                <p>Coba gunakan kata kunci pencarian yang berbeda atau pilih provinsi lain.</p>
+                <button class="btn-primary" id="resetSearchBtn">
+                    <i class="fas fa-redo"></i> Reset Pencarian
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Notification -->
+    <div id="notification" class="notification"></div>
+
+<script>
+// Data lokasi sekolah MBG - DIPERBAIKI
+const schoolLocations = [
+    {
+        id: 1,
+        name: "SDN 01 Menteng",
+        address: "Jl. Besuki No. 5, Menteng, Jakarta Pusat",
+        city: "Jakarta",
+        province: "jakarta",
+        latitude: -6.195492,
+        longitude: 106.837122,
+        status: "active",
+        capacity: 150,
+        schedule: "Senin-Jumat, 12:00-13:00",
+        coordinator: "Budi Santoso (0812-3456-7890)",
+        features: ["wifi", "parking", "accessible", "toilet"],
+        googleMapsLink: "https://maps.google.com/?q=SDN+01+Menteng+Jakarta"
+    },
+    {
+        id: 2,
+        name: "SDN 123 Cijerah",
+        address: "Jl. Cijerah Indah No. 45, Bandung Kulon",
+        city: "Bandung",
+        province: "jabar",
+        latitude: -6.917464,
+        longitude: 107.619125,
+        status: "active",
+        capacity: 200,
+        schedule: "Senin, Rabu, Jumat, 11:30-12:30",
+        coordinator: "Siti Rahayu (0813-4567-8901)",
+        features: ["parking", "toilet", "first-aid"],
+        googleMapsLink: "https://maps.google.com/?q=SDN+123+Cijerah+Bandung"
+    },
+    {
+        id: 3,
+        name: "SDN Kalisari II",
+        address: "Jl. Raya Kalisari No. 88, Mulyorejo, Surabaya",
+        city: "Surabaya",
+        province: "jatim",
+        latitude: -7.245972,
+        longitude: 112.738067,
+        status: "active",
+        capacity: 180,
+        schedule: "Selasa-Kamis, 12:00-13:00",
+        coordinator: "Agus Setiawan (0814-5678-9012)",
+        features: ["wifi", "parking", "accessible", "toilet", "first-aid"],
+        googleMapsLink: "https://maps.google.com/?q=SDN+Kalisari+II+Surabaya"
+    },
+    {
+        id: 4,
+        name: "SD Muhammadiyah 1 Yogyakarta",
+        address: "Jl. KH. Ahmad Dahlan No. 40, Yogyakarta",
+        city: "Yogyakarta",
+        province: "yogyakarta",
+        latitude: -7.79558,
+        longitude: 110.36949,
+        status: "active",
+        capacity: 120,
+        schedule: "Senin-Kamis, 11:30-12:30",
+        coordinator: "Rina Wulandari (0815-6789-0123)",
+        features: ["wifi", "parking", "toilet"],
+        googleMapsLink: "https://maps.google.com/?q=SD+Muhammadiyah+1+Yogyakarta"
+    },
+    {
+        id: 5,
+        name: "SDN 060925 Medan",
+        address: "Jl. Gatot Subroto No. 5, Medan",
+        city: "Medan",
+        province: "sumut",
+        latitude: 3.595195,
+        longitude: 98.672226,
+        status: "active",
+        capacity: 160,
+        schedule: "Senin-Jumat, 12:00-13:00",
+        coordinator: "Dedi Supriyadi (0816-7890-1234)",
+        features: ["parking", "accessible", "toilet", "first-aid"],
+        googleMapsLink: "https://maps.google.com/?q=SDN+060925+Medan"
+    },
+    {
+        id: 6,
+        name: "SDN 2 Mamajang",
+        address: "Jl. Sultan Hasanuddin No. 10, Makassar",
+        city: "Makassar",
+        province: "sulsel",
+        latitude: -5.147665,
+        longitude: 119.432731,
+        status: "active",
+        capacity: 140,
+        schedule: "Senin, Rabu, Jumat, 11:00-12:00",
+        coordinator: "Andi Malawat (0817-8901-2345)",
+        features: ["wifi", "parking", "toilet"],
+        googleMapsLink: "https://maps.google.com/?q=SDN+2+Mamajang+Makassar"
+    },
+    {
+        id: 7,
+        name: "SDN 01 Sudirman",
+        address: "Jl. Jend. Sudirman No. 25, Jakarta Selatan",
+        city: "Jakarta",
+        province: "jakarta",
+        latitude: -6.225013,
+        longitude: 106.803230,
+        status: "active",
+        capacity: 180,
+        schedule: "Senin-Jumat, 11:30-12:30",
+        coordinator: "Ahmad Rifai (0818-9012-3456)",
+        features: ["wifi", "parking", "accessible", "toilet", "first-aid"],
+        googleMapsLink: "https://maps.google.com/?q=SDN+01+Sudirman+Jakarta"
+    },
+    {
+        id: 8,
+        name: "SDN 101 Tarogong",
+        address: "Jl. Raya Tarogong No. 45, Garut",
+        city: "Garut",
+        province: "jabar",
+        latitude: -7.203083,
+        longitude: 107.908699,
+        status: "coming",
+        capacity: 130,
+        schedule: "Akan Datang",
+        coordinator: "Maya Sari (0819-0123-4567)",
+        features: ["parking", "toilet"],
+        googleMapsLink: "https://maps.google.com/?q=SDN+101+Tarogong+Garut"
+    }
+];
+
+// Variabel global
+let map;
+let markers = [];
+let infoWindow;
+let userLocation = null;
+let currentLocationMarker = null;
+let searchMarker = null;
+let filteredLocations = [...schoolLocations];
+
+// Initialize Google Maps
+function initMap() {
+    console.log("Initializing Google Maps...");
+    
+    // Default center (Jakarta)
+    const defaultCenter = { lat: -6.2088, lng: 106.8456 };
+    
+    try {
+        // Create map
+        map = new google.maps.Map(document.getElementById("map"), {
+            center: defaultCenter,
+            zoom: 6,
+            styles: [
+                {
+                    featureType: "administrative",
+                    elementType: "labels.text.fill",
+                    stylers: [{ color: "#444444" }]
+                },
+                {
+                    featureType: "landscape",
+                    elementType: "all",
+                    stylers: [{ color: "#f2f2f2" }]
+                },
+                {
+                    featureType: "poi",
+                    elementType: "all",
+                    stylers: [{ visibility: "off" }]
+                },
+                {
+                    featureType: "road",
+                    elementType: "all",
+                    stylers: [{ saturation: -100 }, { lightness: 45 }]
+                },
+                {
+                    featureType: "road.highway",
+                    elementType: "all",
+                    stylers: [{ visibility: "simplified" }]
+                },
+                {
+                    featureType: "road.arterial",
+                    elementType: "labels.icon",
+                    stylers: [{ visibility: "off" }]
+                },
+                {
+                    featureType: "transit",
+                    elementType: "all",
+                    stylers: [{ visibility: "off" }]
+                },
+                {
+                    featureType: "water",
+                    elementType: "all",
+                    stylers: [{ color: "#c7d2fe" }, { visibility: "on" }]
+                }
+            ],
+            mapTypeControl: false,
+            streetViewControl: false,
+            fullscreenControl: false
+        });
+
+        // Initialize InfoWindow
+        infoWindow = new google.maps.InfoWindow({
+            maxWidth: 300
+        });
+
+        // Create markers for all locations
+        createMarkers();
+        
+        // Initialize location cards
+        renderLocationCards(filteredLocations);
+        
+        // Setup event listeners
+        setupEventListeners();
+        
+        // Try to get user's location
+        getUserLocation();
+        
+        console.log("Google Maps initialized successfully!");
+        
+    } catch (error) {
+        console.error("Error initializing Google Maps:", error);
+        document.getElementById('map').innerHTML = `
+            <div class="no-results-message" style="height: 100%; display: flex; align-items: center; justify-content: center;">
+                <div>
+                    <i class="fas fa-exclamation-triangle"></i>
+                    <h4>Google Maps Tidak Dapat Dimuat</h4>
+                    <p>Silakan periksa koneksi internet Anda.</p>
+                </div>
+            </div>
+        `;
+    }
+}
+
+// Create markers on map
+function createMarkers(locations = schoolLocations) {
+    console.log(`Creating ${locations.length} markers...`);
+    
+    // Clear existing markers
+    markers.forEach(marker => {
+        if (marker.setMap) {
+            marker.setMap(null);
+        }
+    });
+    markers = [];
+
+    locations.forEach(location => {
+        try {
+            const marker = new google.maps.Marker({
+                position: { lat: location.latitude, lng: location.longitude },
+                map: map,
+                title: location.name,
+                icon: {
+                    path: google.maps.SymbolPath.CIRCLE,
+                    fillColor: location.status === "active" ? "#4f46e5" : "#9ca3af",
+                    fillOpacity: 1,
+                    strokeColor: "#ffffff",
+                    strokeWeight: 2,
+                    scale: 10
+                },
+                animation: google.maps.Animation.DROP
+            });
+
+            // Add click listener
+            marker.addListener("click", () => {
+                showInfoWindow(marker, location);
+                highlightLocationCard(location.id);
+            });
+
+            // Add to markers array
+            markers.push(marker);
+            
+        } catch (error) {
+            console.error(`Error creating marker for ${location.name}:`, error);
+        }
+    });
+
+    // Fit bounds to show all markers
+    if (locations.length > 0) {
+        try {
+            const bounds = new google.maps.LatLngBounds();
+            locations.forEach(location => {
+                bounds.extend({ lat: location.latitude, lng: location.longitude });
+            });
+            map.fitBounds(bounds);
+            
+            // If only one location, zoom in more
+            if (locations.length === 1) {
+                setTimeout(() => {
+                    map.setZoom(15);
+                }, 500);
+            }
+        } catch (error) {
+            console.error("Error fitting bounds:", error);
+        }
+    }
+}
+
+// Show InfoWindow
+function showInfoWindow(marker, location) {
+    try {
+        const content = `
+            <div class="info-window">
+                <h3>${location.name}</h3>
+                <span class="info-status">${location.status === "active" ? "Aktif" : "Akan Datang"}</span>
+                <p><i class="fas fa-map-marker-alt"></i> ${location.address}</p>
+                <p><i class="fas fa-clock"></i> ${location.schedule}</p>
+                <p><i class="fas fa-users"></i> Kapasitas: ${location.capacity} anak/hari</p>
+                <p><i class="fas fa-user-check"></i> ${location.coordinator}</p>
+                <div class="info-actions">
+                    <a href="${location.googleMapsLink}" target="_blank" class="btn-info btn-info-primary">
+                        <i class="fas fa-directions"></i> Petunjuk Arah
+                    </a>
+                    <a href="tel:${location.coordinator.match(/\d+/g)?.join('') || ''}" class="btn-info btn-info-secondary">
+                        <i class="fas fa-phone"></i> Hubungi
+                    </a>
+                </div>
+            </div>
+        `;
+
+        infoWindow.setContent(content);
+        infoWindow.open(map, marker);
+        
+    } catch (error) {
+        console.error("Error showing info window:", error);
+    }
+}
+
+// Highlight location card when marker is clicked
+function highlightLocationCard(locationId) {
+    try {
+        // Remove active class from all cards
+        document.querySelectorAll('.location-card').forEach(card => {
+            card.classList.remove('active');
+        });
+
+        // Add active class to matching card
+        const card = document.querySelector(`[data-id="${locationId}"]`);
+        if (card) {
+            card.classList.add('active');
+            card.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+    } catch (error) {
+        console.error("Error highlighting card:", error);
+    }
+}
+
+// Render location cards
+function renderLocationCards(locations) {
+    const container = document.getElementById('locationCardsContainer');
+    const noResultsMessage = document.getElementById('noResultsMessage');
+    
+    if (locations.length === 0) {
+        container.innerHTML = '';
+        noResultsMessage.style.display = 'block';
+        return;
+    }
+    
+    noResultsMessage.style.display = 'none';
+    
+    const cardsHTML = locations.map(location => {
+        // Format phone number for tel link
+        const phoneNumber = location.coordinator.match(/\d+/g)?.join('') || '';
+        
+        return `
+        <div class="location-card" data-id="${location.id}" data-province="${location.province}" data-status="${location.status}">
+            <div class="location-card-header">
+                <div class="location-icon">
+                    <i class="fas fa-school"></i>
+                </div>
+                <div class="location-title">
+                    <h3>${location.name}</h3>
+                    <span class="location-status ${location.status}">
+                        ${location.status === "active" ? "Aktif" : "Akan Datang"}
+                    </span>
+                </div>
+                <div class="location-distance">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <span>${location.city}</span>
+                </div>
+            </div>
+            <div class="location-card-body">
+                <div class="location-info">
+                    <div class="info-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <div>
+                            <h4>Alamat</h4>
+                            <p>${location.address}</p>
+                        </div>
+                    </div>
+                    <div class="info-item">
+                        <i class="fas fa-clock"></i>
+                        <div>
+                            <h4>Jadwal Distribusi</h4>
+                            <p>${location.schedule}</p>
+                        </div>
+                    </div>
+                    <div class="info-item">
+                        <i class="fas fa-users"></i>
+                        <div>
+                            <h4>Kapasitas</h4>
+                            <p>${location.capacity} anak per hari</p>
+                        </div>
+                    </div>
+                    <div class="info-item">
+                        <i class="fas fa-user-check"></i>
+                        <div>
+                            <h4>Koordinator</h4>
+                            <p>${location.coordinator}</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="location-features">
+                    ${location.features.includes("wifi") ? '<span class="feature-tag"><i class="fas fa-wifi"></i> Free WiFi</span>' : ''}
+                    ${location.features.includes("parking") ? '<span class="feature-tag"><i class="fas fa-parking"></i> Parkir</span>' : ''}
+                    ${location.features.includes("accessible") ? '<span class="feature-tag"><i class="fas fa-wheelchair"></i> Aksesibel</span>' : ''}
+                    ${location.features.includes("toilet") ? '<span class="feature-tag"><i class="fas fa-restroom"></i> Toilet</span>' : ''}
+                    ${location.features.includes("first-aid") ? '<span class="feature-tag"><i class="fas fa-first-aid"></i> P3K</span>' : ''}
+                </div>
+                <div class="location-actions">
+                    <a href="${location.googleMapsLink}" target="_blank" class="btn-location btn-location-primary">
+                        <i class="fas fa-directions"></i> Petunjuk Arah
+                    </a>
+                    <a href="tel:${phoneNumber}" class="btn-location btn-location-secondary">
+                        <i class="fas fa-phone"></i> Hubungi
+                    </a>
+                </div>
+            </div>
+        </div>
+    `}).join('');
+    
+    container.innerHTML = cardsHTML;
+    
+    // Add click listeners to cards
+    document.querySelectorAll('.location-card').forEach(card => {
+        card.addEventListener('click', (e) => {
+            // Don't trigger if clicking on links
+            if (e.target.tagName === 'A' || e.target.closest('a')) {
+                return;
+            }
+            
+            const locationId = parseInt(card.dataset.id);
+            const location = locations.find(loc => loc.id === locationId);
+            
+            if (location) {
+                try {
+                    // Center map on location
+                    map.setCenter({ lat: location.latitude, lng: location.longitude });
+                    map.setZoom(15);
+                    
+                    // Show InfoWindow
+                    const marker = markers.find(m => {
+                        try {
+                            return m.getPosition().lat() === location.latitude && 
+                                   m.getPosition().lng() === location.longitude;
+                        } catch {
+                            return false;
+                        }
+                    });
+                    
+                    if (marker) {
+                        showInfoWindow(marker, location);
+                    }
+                    
+                    // Highlight card
+                    highlightLocationCard(locationId);
+                    
+                } catch (error) {
+                    console.error("Error centering map:", error);
+                }
+            }
+        });
+    });
+}
+
+// Filter locations
+function filterLocations() {
+    try {
+        const searchTerm = document.getElementById('locationSearch').value.toLowerCase().trim();
+        const provinceFilter = document.getElementById('provinceFilter').value;
+        const statusFilter = document.getElementById('statusFilter').value;
+        
+        filteredLocations = schoolLocations.filter(location => {
+            // Search filter
+            const matchesSearch = !searchTerm || 
+                location.name.toLowerCase().includes(searchTerm) ||
+                location.address.toLowerCase().includes(searchTerm) ||
+                location.city.toLowerCase().includes(searchTerm);
+            
+            // Province filter
+            const matchesProvince = !provinceFilter || location.province === provinceFilter;
+            
+            // Status filter
+            const matchesStatus = !statusFilter || location.status === statusFilter;
+            
+            return matchesSearch && matchesProvince && matchesStatus;
+        });
+        
+        // Update map markers
+        createMarkers(filteredLocations);
+        
+        // Update cards
+        renderLocationCards(filteredLocations);
+        
+        // Show search marker if search term exists
+        if (searchTerm && filteredLocations.length > 0) {
+            performLocationSearch(searchTerm);
+        } else {
+            // Remove search marker
+            if (searchMarker) {
+                searchMarker.setMap(null);
+                searchMarker = null;
+            }
+        }
+        
+        // Show notification
+        if (searchTerm || provinceFilter || statusFilter) {
+            showNotification("info", `Ditemukan ${filteredLocations.length} lokasi`);
+        }
+        
+    } catch (error) {
+        console.error("Error filtering locations:", error);
+        showNotification("error", "Terjadi kesalahan saat memfilter lokasi");
+    }
+}
+
+// Perform location search using Google Places
+function performLocationSearch(searchTerm) {
+    try {
+        if (!searchTerm || !window.google || !window.google.maps || !window.google.maps.Geocoder) {
+            return;
+        }
+        
+        const geocoder = new google.maps.Geocoder();
+        
+        geocoder.geocode({ address: searchTerm + ', Indonesia' }, (results, status) => {
+            if (status === 'OK' && results[0]) {
+                const location = results[0].geometry.location;
+                
+                // Remove previous search marker
+                if (searchMarker) {
+                    searchMarker.setMap(null);
+                }
+                
+                // Add new search marker
+                searchMarker = new google.maps.Marker({
+                    position: location,
+                    map: map,
+                    title: `Hasil pencarian: ${searchTerm}`,
+                    icon: {
+                        path: google.maps.SymbolPath.CIRCLE,
+                        fillColor: "#10b981",
+                        fillOpacity: 1,
+                        strokeColor: "#ffffff",
+                        strokeWeight: 2,
+                        scale: 12
+                    },
+                    animation: google.maps.Animation.BOUNCE
+                });
+                
+                // Center map on search result
+                map.setCenter(location);
+                map.setZoom(12);
+                
+                // Show InfoWindow for search result
+                const infoContent = `
+                    <div class="info-window">
+                        <h3>Hasil Pencarian</h3>
+                        <p><i class="fas fa-search"></i> "${searchTerm}"</p>
+                        <p>${results[0].formatted_address}</p>
+                        <p><i class="fas fa-school"></i> Ditemukan ${filteredLocations.length} lokasi MBG di sekitar sini</p>
+                    </div>
+                `;
+                
+                infoWindow.setContent(infoContent);
+                infoWindow.open(map, searchMarker);
+            }
+        });
+        
+    } catch (error) {
+        console.error("Error performing location search:", error);
+    }
+}
+
+// Get user's current location
+function getUserLocation() {
+    try {
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(
+                (position) => {
+                    userLocation = {
+                        lat: position.coords.latitude,
+                        lng: position.coords.longitude
+                    };
+                    
+                    // Add marker for user's location
+                    if (currentLocationMarker) {
+                        currentLocationMarker.setMap(null);
+                    }
+                    
+                    currentLocationMarker = new google.maps.Marker({
+                        position: userLocation,
+                        map: map,
+                        title: "Lokasi Anda",
+                        icon: {
+                            path: google.maps.SymbolPath.CIRCLE,
+                            fillColor: "#3b82f6",
+                            fillOpacity: 1,
+                            strokeColor: "#ffffff",
+                            strokeWeight: 2,
+                            scale: 8
+                        }
+                    });
+                    
+                    showNotification("success", "Lokasi Anda berhasil dideteksi");
+                },
+                (error) => {
+                    console.error("Geolocation error:", error);
+                    showNotification("error", "Tidak dapat mengakses lokasi Anda");
+                }
+            );
+        }
+    } catch (error) {
+        console.error("Error getting user location:", error);
+    }
+}
+
+// Setup event listeners
+function setupEventListeners() {
+    try {
+        // Search button
+        document.getElementById('searchBtn').addEventListener('click', (e) => {
+            e.preventDefault();
+            filterLocations();
+        });
+        
+        // Search input (enter key)
+        document.getElementById('locationSearch').addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') {
+                e.preventDefault();
+                filterLocations();
+            }
+        });
+        
+        // Filter changes
+        document.getElementById('provinceFilter').addEventListener('change', filterLocations);
+        document.getElementById('statusFilter').addEventListener('change', filterLocations);
+        
+        // Reset filters button
+        document.getElementById('resetFilters').addEventListener('click', () => {
+            document.getElementById('locationSearch').value = '';
+            document.getElementById('provinceFilter').value = '';
+            document.getElementById('statusFilter').value = '';
+            filterLocations();
+            showNotification("info", "Filter telah direset");
+        });
+        
+        // Reset search button
+        document.getElementById('resetSearchBtn').addEventListener('click', () => {
+            document.getElementById('locationSearch').value = '';
+            filterLocations();
+            showNotification("info", "Pencarian telah direset");
+        });
+        
+        // Current location button
+        document.getElementById('currentLocationBtn').addEventListener('click', () => {
+            if (userLocation && map) {
+                map.setCenter(userLocation);
+                map.setZoom(14);
+                showNotification("info", "Map dipindahkan ke lokasi Anda");
+            } else {
+                getUserLocation();
+            }
+        });
+        
+        // Zoom controls
+        document.getElementById('zoomInBtn').addEventListener('click', () => {
+            if (map) {
+                map.setZoom(map.getZoom() + 1);
+            }
+        });
+        
+        document.getElementById('zoomOutBtn').addEventListener('click', () => {
+            if (map) {
+                map.setZoom(map.getZoom() - 1);
+            }
+        });
+        
+        console.log("Event listeners setup completed!");
+        
+    } catch (error) {
+        console.error("Error setting up event listeners:", error);
+    }
+}
+
+// Show notification
+function showNotification(type, message) {
+    try {
+        const notification = document.getElementById('notification');
+        notification.className = `notification ${type}`;
+        notification.innerHTML = `
+            <i class="fas fa-${type === 'success' ? 'check-circle' : type === 'error' ? 'exclamation-circle' : 'info-circle'}"></i>
+            <span>${message}</span>
+            <button class="notification-close"><i class="fas fa-times"></i></button>
+        `;
+        
+        notification.classList.add('show');
+        
+        // Auto hide after 5 seconds
+        setTimeout(() => {
+            notification.classList.remove('show');
+        }, 5000);
+        
+        // Close button
+        notification.querySelector('.notification-close').addEventListener('click', () => {
+            notification.classList.remove('show');
+        });
+        
+    } catch (error) {
+        console.error("Error showing notification:", error);
+    }
+}
+
+// Initialize when DOM is loaded
+document.addEventListener('DOMContentLoaded', () => {
+    console.log("DOM loaded, initializing...");
+    
+    // Initialize Google Maps
+    window.initMap = initMap;
+    
+    // Preloader
+    setTimeout(() => {
+        document.querySelector('.preloader').classList.add('loaded');
+    }, 1000);
+    
+    // Smooth scroll for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            const href = this.getAttribute('href');
+            if (href === '#') return;
+            
+            e.preventDefault();
+            const targetElement = document.querySelector(href);
+            if (targetElement) {
+                window.scrollTo({
+                    top: targetElement.offsetTop - 80,
+                    behavior: 'smooth'
+                });
+            }
+        });
+    });
+    
+    // Navbar scroll effect
+    window.addEventListener('scroll', () => {
+        const header = document.getElementById('header');
+        if (window.scrollY > 100) {
+            header.classList.add('scrolled');
+        } else {
+            header.classList.remove('scrolled');
+        }
+    });
+    
+    // Hamburger menu
+    const hamburger = document.querySelector('.hamburger');
+    const navLinks = document.querySelector('.nav-links');
+    
+    if (hamburger) {
+        hamburger.addEventListener('click', () => {
+            hamburger.classList.toggle('active');
+            navLinks.classList.toggle('active');
+        });
+    }
+    
+    // Close mobile menu when clicking a link
+    document.querySelectorAll('.nav-link').forEach(link => {
+        link.addEventListener('click', () => {
+            hamburger.classList.remove('active');
+            navLinks.classList.remove('active');
+        });
+    });
+    
+    // Back to top button
+    const backToTop = document.createElement('button');
+    backToTop.className = 'back-to-top';
+    backToTop.innerHTML = '<i class="fas fa-chevron-up"></i>';
+    document.body.appendChild(backToTop);
+    
+    window.addEventListener('scroll', () => {
+        if (window.scrollY > 300) {
+            backToTop.classList.add('visible');
+        } else {
+            backToTop.classList.remove('visible');
+        }
+    });
+    
+    backToTop.addEventListener('click', () => {
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        });
+    });
+    
+    console.log("Initialization completed!");
+});
+
+// Global error handler for Google Maps
+window.gm_authFailure = function() {
+    console.error("Google Maps authentication failed!");
+    document.getElementById('map').innerHTML = `
+        <div class="no-results-message" style="height: 100%; display: flex; align-items: center; justify-content: center;">
+            <div>
+                <i class="fas fa-exclamation-triangle"></i>
+                <h4>Google Maps Tidak Tersedia</h4>
+                <p>API Key Google Maps tidak valid atau telah mencapai batas penggunaan.</p>
+            </div>
+        </div>
+    `;
+};
+</script>
+</body>
+</html>

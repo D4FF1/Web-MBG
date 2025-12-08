@@ -10,10 +10,12 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
     <link rel="stylesheet" href="css/style.css">
+    <!-- Tambahkan Google Maps API -->
+    <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initMap&libraries=places&v=weekly" defer></script>
 </head>
 <body>
     <!-- Preloader -->
-    <div class="preloader">
+    <div class="preloader">     
         <div class="preloader-content">
             <div class="logo-loader">
                 <i class="fas fa-heart"></i>
@@ -61,57 +63,71 @@
 
     <!-- Hero Section -->
     <section class="hero" id="home">
-        <div class="hero-bg">
-            <div class="hero-shapes">
-                <div class="shape shape-1"></div>
-                <div class="shape shape-2"></div>
-                <div class="shape shape-3"></div>
-            </div>
-            <div class="hero-image">
-                <img src="https://images.unsplash.com/photo-1532634922-8fe0b757fb13?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80" alt="Anak-anak sehat Indonesia">
-            </div>
-        </div>
         <div class="container">
-            <div class="hero-content">
-                <div class="hero-badge animate__animated animate__fadeInDown">
-                    <i class="fas fa-star"></i>
-                    <span>Program Nasional 2025</span>
+            <div class="hero-grid">
+                <!-- Hero Content (Kiri) -->
+                <div class="hero-content">
+                    <div class="hero-badge animate__animated animate__fadeInDown">
+                        <i class="fas fa-star"></i>
+                        <span>Program Nasional 2025</span>
+                    </div>
+                    <h1 class="animate__animated animate__fadeInUp">
+                        <span class="hero-title-primary">Nutrisi Untuk</span>
+                        <span class="hero-title-secondary">Generasi Emas Indonesia</span>
+                    </h1>
+                    <p class="hero-subtitle animate__animated animate__fadeInUp animate__delay-1s">
+                        Memberikan akses makanan bergizi bagi 50.000+ anak Indonesia untuk mendukung 
+                        tumbuh kembang optimal dan masa depan yang lebih cerah.
+                    </p>
+                    <div class="hero-actions animate__animated animate__fadeInUp animate__delay-2s">
+                        <a href="#donation" class="btn-hero btn-hero-primary">
+                            <i class="fas fa-heart"></i> Dukung Sekarang
+                        </a>
+                        <a href="https://youtu.be/example-video" class="btn-hero btn-hero-secondary" target="_blank">
+                            <i class="fas fa-play-circle"></i> Lihat Video
+                        </a>
+                    </div>
+                    <div class="hero-stats animate__animated animate__fadeIn animate__delay-3s">
+                        <div class="stat-item">
+                            <div class="stat-number">50K+</div>
+                            <div class="stat-label">Anak Terbantu</div>
+                        </div>
+                        <div class="stat-divider"></div>
+                        <div class="stat-item">
+                            <div class="stat-number">15</div>
+                            <div class="stat-label">Provinsi</div>
+                        </div>
+                        <div class="stat-divider"></div>
+                        <div class="stat-item">
+                            <div class="stat-number">200+</div>
+                            <div class="stat-label">Lokasi MBG</div>
+                        </div>
+                        <div class="stat-divider"></div>
+                        <div class="stat-item">
+                            <div class="stat-number">95%</div>
+                            <div class="stat-label">Kepuasan</div>
+                        </div>
+                    </div>
                 </div>
-                <h1 class="animate__animated animate__fadeInUp">
-                    <span class="hero-title-primary">Nutrisi Untuk</span>
-                    <span class="hero-title-secondary">Generasi Emas Indonesia</span>
-                </h1>
-                <p class="hero-subtitle animate__animated animate__fadeInUp animate__delay-1s">
-                    Memberikan akses makanan bergizi bagi 50.000+ anak Indonesia untuk mendukung 
-                    tumbuh kembang optimal dan masa depan yang lebih cerah.
-                </p>
-                <div class="hero-actions animate__animated animate__fadeInUp animate__delay-2s">
-                    <a href="#donation" class="btn-hero btn-hero-primary">
-                        <i class="fas fa-heart"></i> Dukung Sekarang
-                    </a>
-                    <a href="https://youtu.be/example-video" class="btn-hero btn-hero-secondary" target="_blank">
-                        <i class="fas fa-play-circle"></i> Lihat Video
-                    </a>
-                </div>
-                <div class="hero-stats animate__animated animate__fadeIn animate__delay-3s">
-                    <div class="stat-item">
-                        <div class="stat-number">50K+</div>
-                        <div class="stat-label">Anak Terbantu</div>
+                
+                <!-- Hero Image (Kanan) -->
+                <div class="hero-image animate__animated animate__fadeInRight">
+                    <div class="hero-image-container">
+                        <img src="https://images.unsplash.com/photo-1565958011703-44f9829ba187?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" alt="Makanan bergizi untuk anak-anak">
+                        <div class="hero-image-overlay">
+                            <div class="floating-badge">
+                                <i class="fas fa-utensils"></i>
+                                <span>Menu Seimbang</span>
+                            </div>
+                            <div class="floating-badge badge-2">
+                                <i class="fas fa-apple-alt"></i>
+                                <span>100% Alami</span>
+                            </div>
+                        </div>
                     </div>
-                    <div class="stat-divider"></div>
-                    <div class="stat-item">
-                        <div class="stat-number">15</div>
-                        <div class="stat-label">Provinsi</div>
-                    </div>
-                    <div class="stat-divider"></div>
-                    <div class="stat-item">
-                        <div class="stat-number">200+</div>
-                        <div class="stat-label">Lokasi MBG</div>
-                    </div>
-                    <div class="stat-divider"></div>
-                    <div class="stat-item">
-                        <div class="stat-number">95%</div>
-                        <div class="stat-label">Kepuasan</div>
+                    <div class="hero-image-caption">
+                        <i class="fas fa-check-circle"></i>
+                        <span>Menu harian dirancang oleh ahli gizi</span>
                     </div>
                 </div>
             </div>
@@ -218,58 +234,25 @@
         </div>
     </section>
 
-    <!-- Locations Section -->
+    <!-- Locations Section - IMPROVED WITH GOOGLE MAPS -->
     <section class="locations" id="locations">
         <div class="container">
             <div class="section-header">
                 <span class="section-label">Lokasi MBG</span>
                 <h2 class="section-title">Temukan Lokasi Terdekat</h2>
                 <p class="section-subtitle">
-                    MBG hadir di berbagai kota di Indonesia. Temukan lokasi terdekat untuk informasi lebih lanjut.
+                    MBG hadir di berbagai sekolah di Indonesia. Temukan lokasi terdekat untuk informasi lebih lanjut.
                 </p>
             </div>
             
-            <!-- Map Section -->
-            <div class="map-container">
-                <div class="map-visual">
-                    <!-- Simplified Indonesia Map with Points -->
-                    <div class="map-overlay">
-                        <div class="map-point jakarta active" data-location="jakarta" data-tooltip="Jakarta - 5 lokasi aktif">
-                            <div class="point-pulse"></div>
-                            <div class="point-label">Jakarta</div>
-                        </div>
-                        <div class="map-point bandung" data-location="bandung" data-tooltip="Bandung - 3 lokasi aktif">
-                            <div class="point-pulse"></div>
-                            <div class="point-label">Bandung</div>
-                        </div>
-                        <div class="map-point surabaya" data-location="surabaya" data-tooltip="Surabaya - 4 lokasi aktif">
-                            <div class="point-pulse"></div>
-                            <div class="point-label">Surabaya</div>
-                        </div>
-                        <div class="map-point yogyakarta" data-location="yogyakarta" data-tooltip="Yogyakarta - 2 lokasi aktif">
-                            <div class="point-pulse"></div>
-                            <div class="point-label">Yogyakarta</div>
-                        </div>
-                        <div class="map-point medan" data-location="medan" data-tooltip="Medan - 3 lokasi aktif">
-                            <div class="point-pulse"></div>
-                            <div class="point-label">Medan</div>
-                        </div>
-                        <div class="map-point makassar" data-location="makassar" data-tooltip="Makassar - 2 lokasi aktif">
-                            <div class="point-pulse"></div>
-                            <div class="point-label">Makassar</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Location Search -->
+            <!-- Location Search - ENHANCED -->
             <div class="location-search">
                 <div class="search-box">
                     <div class="input-group">
                         <i class="fas fa-search"></i>
-                        <input type="text" id="locationSearch" placeholder="Cari lokasi berdasarkan kota atau kecamatan...">
+                        <input type="text" id="locationSearch" placeholder="Cari lokasi berdasarkan kota, kecamatan, atau nama sekolah...">
                     </div>
-                    <button class="btn-primary search-btn">
+                    <button class="btn-primary search-btn" id="searchBtn">
                         <i class="fas fa-map-marker-alt"></i> Cari
                     </button>
                 </div>
@@ -288,196 +271,55 @@
                         <option value="active">Aktif</option>
                         <option value="coming">Akan Datang</option>
                     </select>
+                    <button class="btn-secondary" id="resetFilters">
+                        <i class="fas fa-redo"></i> Reset Filter
+                    </button>
                 </div>
             </div>
 
-            <!-- Location Cards -->
-            <div class="location-cards-container">
-                <div class="location-card active" id="jakarta-card">
-                    <div class="location-card-header">
-                        <div class="location-icon">
-                            <i class="fas fa-school"></i>
-                        </div>
-                        <div class="location-title">
-                            <h3>SDN 01 Menteng - Jakarta Pusat</h3>
-                            <span class="location-status active">Aktif</span>
-                        </div>
-                        <div class="location-distance">
-                            <i class="fas fa-location-arrow"></i>
-                            <span>5 km dari Anda</span>
-                        </div>
+            <!-- Map Container - IMPROVED -->
+            <div class="map-container">
+                <div id="map"></div>
+                <div class="map-controls">
+                    <button class="map-control-btn" id="currentLocationBtn">
+                        <i class="fas fa-location-arrow"></i> Lokasi Saya
+                    </button>
+                    <button class="map-control-btn" id="zoomInBtn">
+                        <i class="fas fa-plus"></i>
+                    </button>
+                    <button class="map-control-btn" id="zoomOutBtn">
+                        <i class="fas fa-minus"></i>
+                    </button>
+                </div>
+                <div class="map-legend">
+                    <div class="legend-item">
+                        <div class="legend-color" style="background-color: #4f46e5;"></div>
+                        <span>Sekolah MBG Aktif</span>
                     </div>
-                    <div class="location-card-body">
-                        <div class="location-info">
-                            <div class="info-item">
-                                <i class="fas fa-map-marker-alt"></i>
-                                <div>
-                                    <h4>Alamat</h4>
-                                    <p>Jl. Besuki No. 5, Menteng, Jakarta Pusat, DKI Jakarta 10310</p>
-                                </div>
-                            </div>
-                            <div class="info-item">
-                                <i class="fas fa-clock"></i>
-                                <div>
-                                    <h4>Jadwal Distribusi</h4>
-                                    <p>Senin - Jumat, 12:00 - 13:00 WIB</p>
-                                </div>
-                            </div>
-                            <div class="info-item">
-                                <i class="fas fa-users"></i>
-                                <div>
-                                    <h4>Kapasitas</h4>
-                                    <p>150 anak per hari</p>
-                                </div>
-                            </div>
-                            <div class="info-item">
-                                <i class="fas fa-user-check"></i>
-                                <div>
-                                    <h4>Koordinator</h4>
-                                    <p>Budi Santoso (0812-3456-7890)</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="location-features">
-                            <span class="feature-tag"><i class="fas fa-wifi"></i> Free WiFi</span>
-                            <span class="feature-tag"><i class="fas fa-parking"></i> Parkir</span>
-                            <span class="feature-tag"><i class="fas fa-wheelchair"></i> Aksesibel</span>
-                            <span class="feature-tag"><i class="fas fa-restroom"></i> Toilet</span>
-                        </div>
-                        <div class="location-actions">
-                            <a href="https://maps.google.com/?q=SDN+01+Menteng+Jakarta+Pusat" target="_blank" class="btn-location btn-location-primary">
-                                <i class="fas fa-directions"></i> Petunjuk Arah
-                            </a>
-                            <a href="tel:+6281256742490" class="btn-location btn-location-secondary">
-                                <i class="fas fa-phone"></i> Hubungi
-                            </a>
-                        </div>
+                    <div class="legend-item">
+                        <div class="legend-color" style="background-color: #10b981;"></div>
+                        <span>Lokasi Pencarian</span>
+                    </div>
+                    <div class="legend-item">
+                        <div class="legend-color" style="background-color: #3b82f6;"></div>
+                        <span>Lokasi Anda</span>
                     </div>
                 </div>
+            </div>
 
-                <div class="location-card" id="bandung-card">
-                    <div class="location-card-header">
-                        <div class="location-icon">
-                            <i class="fas fa-school"></i>
-                        </div>
-                        <div class="location-title">
-                            <h3>SDN 123 Cijerah - Bandung</h3>
-                            <span class="location-status active">Aktif</span>
-                        </div>
-                        <div class="location-distance">
-                            <i class="fas fa-location-arrow"></i>
-                            <span>12 km dari Anda</span>
-                        </div>
-                    </div>
-                    <div class="location-card-body">
-                        <div class="location-info">
-                            <div class="info-item">
-                                <i class="fas fa-map-marker-alt"></i>
-                                <div>
-                                    <h4>Alamat</h4>
-                                    <p>Jl. Cijerah Indah No. 45, Bandung Kulon, Bandung, Jawa Barat 40213</p>
-                                </div>
-                            </div>
-                            <div class="info-item">
-                                <i class="fas fa-clock"></i>
-                                <div>
-                                    <h4>Jadwal Distribusi</h4>
-                                    <p>Senin, Rabu, Jumat, 11:30 - 12:30 WIB</p>
-                                </div>
-                            </div>
-                            <div class="info-item">
-                                <i class="fas fa-users"></i>
-                                <div>
-                                    <h4>Kapasitas</h4>
-                                    <p>200 anak per hari</p>
-                                </div>
-                            </div>
-                            <div class="info-item">
-                                <i class="fas fa-user-check"></i>
-                                <div>
-                                    <h4>Koordinator</h4>
-                                    <p>Siti Rahayu (0813-4567-8901)</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="location-features">
-                            <span class="feature-tag"><i class="fas fa-parking"></i> Parkir</span>
-                            <span class="feature-tag"><i class="fas fa-restroom"></i> Toilet</span>
-                            <span class="feature-tag"><i class="fas fa-first-aid"></i> P3K</span>
-                        </div>
-                        <div class="location-actions">
-                            <a href="https://maps.google.com/?q=SDN+123+Cijerah+Bandung" target="_blank" class="btn-location btn-location-primary">
-                                <i class="fas fa-directions"></i> Petunjuk Arah
-                            </a>
-                            <a href="tel:+6281256742490" class="btn-location btn-location-secondary">
-                                <i class="fas fa-phone"></i> Hubungi
-                            </a>
-                        </div>
-                    </div>
-                </div>
+            <!-- Location Cards Container -->
+            <div class="location-cards-container" id="locationCardsContainer">
+                <!-- Cards akan di-generate oleh JavaScript -->
+            </div>
 
-                <div class="location-card" id="surabaya-card">
-                    <div class="location-card-header">
-                        <div class="location-icon">
-                            <i class="fas fa-school"></i>
-                        </div>
-                        <div class="location-title">
-                            <h3>SDN Kalisari II - Surabaya</h3>
-                            <span class="location-status active">Aktif</span>
-                        </div>
-                        <div class="location-distance">
-                            <i class="fas fa-location-arrow"></i>
-                            <span>8 km dari Anda</span>
-                        </div>
-                    </div>
-                    <div class="location-card-body">
-                        <div class="location-info">
-                            <div class="info-item">
-                                <i class="fas fa-map-marker-alt"></i>
-                                <div>
-                                    <h4>Alamat</h4>
-                                    <p>Jl. Raya Kalisari No. 88, Mulyorejo, Surabaya, Jawa Timur 60112</p>
-                                </div>
-                            </div>
-                            <div class="info-item">
-                                <i class="fas fa-clock"></i>
-                                <div>
-                                    <h4>Jadwal Distribusi</h4>
-                                    <p>Selasa - Kamis, 12:00 - 13:00 WIB</p>
-                                </div>
-                            </div>
-                            <div class="info-item">
-                                <i class="fas fa-users"></i>
-                                <div>
-                                    <h4>Kapasitas</h4>
-                                    <p>180 anak per hari</p>
-                                </div>
-                            </div>
-                            <div class="info-item">
-                                <i class="fas fa-user-check"></i>
-                                <div>
-                                    <h4>Koordinator</h4>
-                                    <p>Agus Setiawan (0814-5678-9012)</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="location-features">
-                            <span class="feature-tag"><i class="fas fa-wifi"></i> Free WiFi</span>
-                            <span class="feature-tag"><i class="fas fa-parking"></i> Parkir</span>
-                            <span class="feature-tag"><i class="fas fa-wheelchair"></i> Aksesibel</span>
-                            <span class="feature-tag"><i class="fas fa-restroom"></i> Toilet</span>
-                            <span class="feature-tag"><i class="fas fa-first-aid"></i> P3K</span>
-                        </div>
-                        <div class="location-actions">
-                            <a href="https://maps.google.com/?q=SDN+Kalisari+II+Surabaya" target="_blank" class="btn-location btn-location-primary">
-                                <i class="fas fa-directions"></i> Petunjuk Arah
-                            </a>
-                            <a href="tel:+6281256742490" class="btn-location btn-location-secondary">
-                                <i class="fas fa-phone"></i> Hubungi
-                            </a>
-                        </div>
-                    </div>
-                </div>
+            <!-- No Results Message -->
+            <div class="no-results-message" id="noResultsMessage" style="display: none;">
+                <i class="fas fa-map-marker-alt"></i>
+                <h4>Tidak Ada Lokasi Ditemukan</h4>
+                <p>Coba gunakan kata kunci pencarian yang berbeda atau pilih provinsi lain.</p>
+                <button class="btn-primary" id="resetSearchBtn">
+                    <i class="fas fa-redo"></i> Reset Pencarian
+                </button>
             </div>
         </div>
     </section>
@@ -1261,6 +1103,9 @@
     <!-- Tooltip Container -->
     <div id="tooltip-container"></div>
 
+    <!-- Main JavaScript -->
     <script src="js/main.js"></script>
+    <!-- Google Maps JavaScript -->
+    <script src="js/maps.js"></script>
 </body>
 </html>
